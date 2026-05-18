@@ -27,7 +27,7 @@
             <span class="text-muted">Email:</span><br>
             <?= esc($useremail); ?>
         </p>
-
+        
         <p class="mb-0">
             <span class="text-muted">Rol:</span><br>
             <?= esc($role); ?>
