@@ -1,4 +1,4 @@
-<?= $this->extend('privat/layout') ?>
+<?= $this->extend('../../layout/layout') ?>
 
 <?= $this->section('content') ?>
 <style>
