@@ -64,7 +64,7 @@ class MatriculaMigration extends Migration
         $this->forge->addKey('id_matricula',true);
 
         $this->forge->addKey('id_tandada');
-
+        
         $this->forge->createTable('matricula');
     }
      

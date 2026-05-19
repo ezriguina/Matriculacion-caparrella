@@ -9,6 +9,7 @@ use App\Models\MatriculaModel;
 use App\Models\MensajeModel;
 use App\Models\ExpedienteModel;
 use App\Models\BonificacionModel;
+use App\Models\MensajesModel;
 use App\Models\ReudccionesModel;
 use App\Models\TandaModel;
 use App\Models\TutorModel;
@@ -70,11 +71,16 @@ class MatriculaController extends BaseController
 
     public function m_alumne_view(){
     helper('form') ;
-    $TandadaModel=new TandaModel();
+    $TandadaModel=new TandaModel(); 
+
+    if(!$TandadaModel){
+        $data['Tand']='Tandada por defecto'; 
+    }
+    
     $data['Tand'] = $TandadaModel->where('estado','1')->first() ; 
     
     return view('public/matricula/matricula1',$data);
-       
+      
     }
 
     public function m_alumne_post(){
@@ -206,7 +212,7 @@ return redirect()->to('matricula/datos_curs');
 
     public function m_curs_view(){
         $cursModel = new CursModel(); 
-        $bonificacionModel=new BonifModel(); 
+        $bonificacionModel=new BonificacionModel(); 
      
         helper('form');
         $data['bonif'] = $bonificacionModel->findAll(); 
@@ -217,7 +223,7 @@ return redirect()->to('matricula/datos_curs');
 
 public function m_curs_post(){
     $matriculaModel = new MatriculaModel(); 
-    $bonifModel = new BonifModel(); 
+    $bonifModel = new BonificacionModel(); 
 
 $session = session();
 helper('form');
@@ -350,7 +356,7 @@ public function pago_post()
     $html = view('pdf/matricula_pdf', $data);
    
     $pdf = new \TCPDF();
-
+    
     $pdf->SetCreator($alumne['Nom_alumne']);
     $pdf->SetAuthor('Caparrella matriculacion ');
     $pdf->SetTitle('Matricula');
@@ -378,10 +384,10 @@ public function Dashborad_view()
     $AlumneModel    = new AlumneModel();
     $CursModel      = new CursModel();
     $matriculaModel = new MatriculaModel();
-    $mensajeModel   = new MensajeModel();
+    $mensajeModel   = new MensajesModel();
     $TandadaModel   = new TandaModel();
     $UserModel     = new UserModel() ;  
-    $bonifModel    =new BonifModel(); 
+    $bonifModel    =new BonificacionModel(); 
     //$reduccModel   =new ReduccModel(); 
 
     
@@ -608,7 +614,7 @@ public function matricula_papelera()
         helper('form');
 
         $cursModel = new CursModel();
-        $bonifModel = new BonifModel();
+        $bonifModel = new BonificacionModel();
         
         $data = [
             'cursos' => $cursModel->findAll(),
@@ -750,7 +756,7 @@ public function matricula_papelera()
     $AlumneModel = new AlumneModel();
     $TutorModel = new TutorModel();
     $CursModel = new CursModel();
-    $BonifModel = new BonifModel();
+    $BonifModel = new BonificacionModel();
 
     $matricula = $MatriculaModel->find($id);
 

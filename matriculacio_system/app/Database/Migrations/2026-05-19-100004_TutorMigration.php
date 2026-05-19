@@ -9,7 +9,7 @@ class TutorMigration extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
+            'id_tutor' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
@@ -63,7 +63,7 @@ class TutorMigration extends Migration
             ],
         ]);
 
-        $this->forge->addKey('id', true);
+        $this->forge->addKey('id_tutor', true);
         $this->forge->createTable('tutor_legal');
     }
 

@@ -37,7 +37,7 @@
                             <span>Código curso</span>
                             <strong><?= esc($curs['codigo_curs']) ?></strong>
                         </li>
-
+        
     </h1>
 </body>
 </html>
