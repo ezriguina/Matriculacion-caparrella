@@ -15,7 +15,7 @@
 <div class="container py-4">
             <div class="card border">
     <div class="card-body">
-
+    
         <h6 class="mb-3">Información del usuario</h6>
 
         <p class="mb-2">
