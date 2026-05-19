@@ -70,7 +70,7 @@ class MatriculaController extends BaseController
 
     public function m_alumne_view(){
     helper('form') ;
-    $TandadaModel=new TandadaModel();
+    $TandadaModel=new TandaModel();
     $data['Tand'] = $TandadaModel->where('estado','1')->first() ; 
     
     return view('public/matricula/matricula1',$data);
@@ -297,7 +297,7 @@ public function pago_post()
     $session = session();
     
     $matriculaModel = new MatriculaModel();
-    $tandadaModel = new TandadaModel() ; 
+    $tandadaModel = new TandaModel() ; 
 
     if (!$session->has('id_alumne')) {
         return redirect()->to('login');
@@ -379,7 +379,7 @@ public function Dashborad_view()
     $CursModel      = new CursModel();
     $matriculaModel = new MatriculaModel();
     $mensajeModel   = new MensajeModel();
-    $TandadaModel   = new TandadaModel();
+    $TandadaModel   = new TandaModel();
     $UserModel     = new UserModel() ;  
     $bonifModel    =new BonifModel(); 
     //$reduccModel   =new ReduccModel(); 
@@ -414,7 +414,7 @@ public function Matricula_list(){
     $matriculaModel = new MatriculaModel(); 
     $alumneModel = new AlumneModel() ; 
     $cursModel = new CursModel() ; 
-    $TandadaModel = new TandadaModel(); 
+    $TandadaModel = new TandaModel(); 
     
 
     $matriculas=$matriculaModel->paginate(10,'default') ; 
@@ -522,7 +522,7 @@ public function search()
 
     $matriculaModel = new MatriculaModel();
     $cursModel = new CursModel();
-    $TandadaModel = new TandadaModel(); 
+    $TandadaModel = new TandaModel(); 
 
     $cursos = $cursModel->findAll();
 
@@ -626,7 +626,7 @@ public function matricula_papelera()
         $AlumneModel = new AlumneModel();
         $TutorModel = new TutorModel();
         $MatriculaModel = new MatriculaModel();
-        $TandadaModel = new TandadaModel();
+        $TandadaModel = new TandaModel();
 
         $validation = [
             'nom_alumne' => 'required|min_length[3]',
