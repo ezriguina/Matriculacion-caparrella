@@ -17,34 +17,31 @@ $routes->post('matricula','MatriculaController::index_post');
 
 
 
-$routes->group('public', function($routes){
 
-    $routes->get('login','LoginController::log');
-    $routes->post('login','LoginController::log_post');
+    $routes->get('public/login','LoginController::log');
+    $routes->post('public/login','LoginController::log_post');
     
-    $routes->get('login_code','LoginController::login_code');
-    $routes->post('login_code','LoginController::login_code_post');
-    $routes->get('error_pre','loginController::login_code_error'); 
+    $routes->get('public/login_code','LoginController::login_code');
+    $routes->post('public/login_code','LoginController::login_code_post');
+    $routes->get('public/error_pre','loginController::login_code_error'); 
     
-});
 
-$routes->group('matricula', function($routes){
 
-    $routes->get('/', 'MatriculaController::matricula_view');
-    $routes->post('/', 'MatriculaController::matricula_post');
 
-    $routes->get('datos_alumne','MatriculaController::m_alumne_view');
-    $routes->post('datos_alumne','MatriculaController::m_alumne_post');
+    $routes->get('matricula/', 'MatriculaController::matricula_view');
+    $routes->post('matricula/', 'MatriculaController::matricula_post');
 
-    $routes->get('datos_curs','MatriculaController::m_curs_view');
-    $routes->post('datos_curs','MatriculaController::m_curs_post');
+    $routes->get('matricula/datos_alumne','MatriculaController::m_alumne_view');
+    $routes->post('matricula/datos_alumne','MatriculaController::m_alumne_post');
 
-    $routes->get('pago','MatriculaController::pago_view');
-    $routes->post('pago','MatriculaController::pago_post');
+    $routes->get('matricula/datos_curs','MatriculaController::m_curs_view');
+    $routes->post('matricula/datos_curs','MatriculaController::m_curs_post');
+
+    $routes->get('matricula/pago','MatriculaController::pago_view');
+    $routes->post('matricula/pago','MatriculaController::pago_post');
      
-    $routes->get('pago/pdf','MatriculaController::generar_pdf');
+    $routes->get('matricula/pago/pdf','MatriculaController::generar_pdf');
 
-});
 //------------------------------------------------------------------
 
   
