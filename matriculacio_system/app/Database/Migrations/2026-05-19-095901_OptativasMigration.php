@@ -28,6 +28,10 @@ class OptativaMigration extends Migration
                 'type'       => 'DECIMAL',
                 'constraint' => '10,2',
             ],
+             'curso_id' => [
+             'type'     => 'INT',
+             'unsigned' => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

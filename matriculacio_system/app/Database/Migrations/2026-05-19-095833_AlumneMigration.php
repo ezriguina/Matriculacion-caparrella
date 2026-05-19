@@ -90,17 +90,6 @@ class AlumneMigration extends Migration
                 'constraint' => 255,
                 'null'       => true,
             ],
-            'id_reduccion' => [
-             'type'       => 'INT',
-             'constraint' => 11,
-             'null'       => true,
-            ],
-
-             'id_bonificacion' => [
-             'type'       => 'INT',
-             'constraint' => 11,
-             'null'       => true,
-            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

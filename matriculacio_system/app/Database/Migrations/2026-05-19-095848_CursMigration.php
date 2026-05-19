@@ -28,6 +28,10 @@ class CursMigration extends Migration
                 'type'       => 'DECIMAL',
                 'constraint' => '10,2',
             ],
+             'nivel_id' => [ 
+                'type'       => 'INT',
+                'unsigned'   => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
