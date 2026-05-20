@@ -1,178 +1,381 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Matricula Estudis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dades del Curs</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
-        .stepper-wrapper {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
+
+        body{
+            background:#f5f7ff;
         }
 
-        .stepper-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 22px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #e2e8f0;
+        .primary-color{
+            color:#5f6ccf;
         }
 
-        .step {
-            text-align: center;
-            width: 33%;
+        .step-circle{
+            width:42px;
+            height:42px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:600;
+            background:#dbe2ff;
+            color:#5f6ccf;
         }
 
-        .step-circle {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: #cbd5e1;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            margin: auto;
+        .step.active .step-circle{
+            background:#5f6ccf;
+            color:white;
         }
 
-        .step.active .step-circle {
-            background: #0d6efd;
+        .step.completed .step-circle{
+            background:#39c27f;
+            color:white;
         }
 
-        .step.completed .step-circle {
-            background: #16c172;
+        .form-control,
+        .form-select{
+            border-radius:14px;
+            padding:0.8rem 1rem;
         }
+
+        .btn-primary{
+            background:#5f6ccf;
+            border-color:#5f6ccf;
+        }
+
+        .btn-primary:hover{
+            background:#5260c2;
+            border-color:#5260c2;
+        }
+
+        .upload-box{
+            border:2px dashed #d6dcff;
+            transition:.2s ease;
+        }
+
+        .upload-box:hover{
+            border-color:#5f6ccf;
+            background:#f8f9ff;
+        }
+
+        .section-title{
+            color:#5f6ccf;
+            font-weight:700;
+        }
+
     </style>
+
 </head>
 
-<body class="bg-light">
+<body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="<?= base_url('img/logo-removebg-preview.png') ?>" 
-                 alt="Logo Instituto"
-                 height="40"
-                 class="me-2">
-            Proceso de Matrícula
-        </a>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
 
-<div class="container py-5">
-    <div class="card shadow-lg border-0 rounded-4">
+        <div class="container">
 
-        <div class="stepper-wrapper mb-5">
-            <div class="step completed">
-                <div class="step-circle">1</div>
-                <div>Datos Alumno</div>
-            </div>
+            <a class="navbar-brand d-flex align-items-center gap-3 text-decoration-none" href="#">
 
-            <div class="step active">
-                <div class="step-circle">2</div>
-                <div>Datos Curso</div>
-            </div>
+                <img 
+                    src="<?= base_url('img/logo-removebg-preview.png') ?>" 
+                    height="55">
 
-            <div class="step">
-                <div class="step-circle">3</div>
-                <div>Pago</div>
-            </div>
+                <div class="fw-bold fs-4 lh-1 primary-color">
+
+                    Institut <br> Caparrella
+
+                </div>
+
+            </a>
+
         </div>
 
-        <div class="card-body p-5">
+    </nav>
 
-            <h4 class="text-primary mb-4">Datos del Curso</h4>
+    <div class="container py-5">
 
-            <form action="<?= base_url('matricula/datos_curs') ?>" method="post" enctype="multipart/form-data">
+        <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
 
-                <?= csrf_field() ?>
-                <?= validation_list_errors() ?>
+            <div class="card-body p-4 p-lg-5">
 
-                <div class="row g-3 mb-4">
-                    <div class="col-md-6">
-                        <label class="form-label">Ciclo formativo</label>
-                        <select class="form-select" name="Nom_curs">
-                            <option value="">Seleccione</option>
-                            <?php foreach($curso as $curs): ?>
-                            <option value="<?= $curs['Nom_curs']; ?> "> <?= $curs['Nom_curs']; ?> </option>
-                            <?php endforeach; ?>
-                        </select>
+                <div class="d-flex justify-content-between align-items-center mb-5 text-center">
+
+                    <div class="step completed flex-fill">
+
+                        <div class="step-circle mx-auto mb-2">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+
+                        <small class="fw-semibold">
+                            Alumne
+                        </small>
+
                     </div>
-                </div>
-                
-                <div class="row g-3 mb-4">
-                    <div class="col-md-6">
-                        <label class="form-label">Tipo matrícula</label>
-                        <select class="form-select" name="tipo_matricula">
-                            <option value="normal">Normal</option>
-                            <option value="continuidad">Continuidad</option>
-                        </select>
+
+                    <div class="step active flex-fill">
+
+                        <div class="step-circle mx-auto mb-2">
+                            2
+                        </div>
+
+                        <small class="fw-semibold">
+                            Curs
+                        </small>
+
                     </div>
+
+                    <div class="step flex-fill">
+
+                        <div class="step-circle mx-auto mb-2">
+                            3
+                        </div>
+
+                        <small class="fw-semibold text-muted">
+                            Pagament
+                        </small>
+
+                    </div>
+
                 </div>
 
-                <hr class="my-4">
+                <form action="<?= base_url('matricula/datos_curs') ?>" method="post" enctype="multipart/form-data">
 
-                <h5 class="text-secondary mb-3">Bonificaciones</h5>
+                    <?= csrf_field() ?>
+                    <?= validation_list_errors() ?>
 
-                <div class="mb-3">
-                    <label class="form-label">Seleccione bonificación</label>
-                    <select class="form-select" name="bonif">
-                            <option value="">Seleccione</option>
-                            <?php foreach($bonif as $b): ?>
-                            <option value="<?= $b['nombre']; ?> "> <?= $b['nombre']; ?> </option>
-                            <?php endforeach; ?>
-                        </select>
-                </div>
+                    <div class="card border-0 bg-light rounded-4 mb-4">
 
-                <h5 class="text-secondary mb-3">Reducciones</h5>
+                        <div class="card-body p-4">
 
-                <div class="mb-3">
-                    <label class="form-label">Seleccione reducción</label>
-                    <select class="form-select" name="reduccion" id="reduccionSelect">
-                        <option value="">Ninguna</option>
-                        <option value="familia_numerosa">Familia Numerosa</option>
-                        <option value="hermanos">Descuento por hermanos (15%)</option>
-                    </select>
-                </div>
+                            <h4 class="section-title mb-4">
 
-                <div class="mb-3" id="archivoContainer" style="display:none;">
-                    <label class="form-label">Subir documentación justificativa</label>
-                    <input type="file" class="form-control" name="documento_reduccion" accept=".pdf,.jpg,.png">
-                    <small class="text-muted">Formatos permitidos: PDF, JPG, PNG</small>
-                </div>
+                                <i class="bi bi-book me-2"></i>
 
-                <div class="text-end">
-                    <button class="btn btn-primary btn-lg">
-                        Continuar al pago
-                    </button>
-                </div>
+                                Dades del curs
 
-            </form>
+                            </h4>
+
+                            <div class="row g-4">
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label fw-semibold">
+                                        Cicle formatiu
+                                    </label>
+
+                                    <select class="form-select" name="Nom_curs">
+
+                                        <option value="">
+                                            Selecciona un curs
+                                        </option>
+
+                                        <?php foreach($curso as $curs): ?>
+
+                                        <option value="<?= $curs['Nom_curs']; ?>">
+
+                                            <?= $curs['Nom_curs']; ?>
+
+                                        </option>
+
+                                        <?php endforeach; ?>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label fw-semibold">
+                                        Tipus de matrícula
+                                    </label>
+
+                                    <select class="form-select" name="tipo_matricula">
+
+                                        <option value="normal">
+                                            Normal
+                                        </option>
+
+                                        <option value="continuidad">
+                                            Continuïtat
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card border-0 bg-light rounded-4 mb-4">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="section-title mb-4">
+
+                                <i class="bi bi-percent me-2"></i>
+
+                                Bonificacions i reduccions
+
+                            </h4>
+
+                            <div class="row g-4">
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label fw-semibold">
+                                        Bonificació
+                                    </label>
+
+                                    <select class="form-select" name="bonif">
+
+                                        <option value="">
+                                            Selecciona una bonificació
+                                        </option>
+
+                                        <?php foreach($bonif as $b): ?>
+
+                                        <option value="<?= $b['nombre']; ?>">
+
+                                            <?= $b['nombre']; ?>
+
+                                        </option>
+
+                                        <?php endforeach; ?>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label fw-semibold">
+                                        Reducció
+                                    </label>
+
+                                    <select 
+                                        class="form-select"
+                                        name="reduccion"
+                                        id="reduccionSelect">
+
+                                        <option value="">
+                                            Cap reducció
+                                        </option>
+
+                                        <option value="familia_numerosa">
+                                            Família nombrosa
+                                        </option>
+
+                                        <option value="hermanos">
+                                            Descompte per germans
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <div id="archivoContainer" class="mt-4" style="display:none;">
+
+                                <div class="upload-box rounded-4 p-4 bg-white">
+
+                                    <label class="form-label fw-semibold mb-3">
+
+                                        <i class="bi bi-upload me-2"></i>
+
+                                        Document justificatiu
+
+                                    </label>
+
+                                    <input 
+                                        type="file"
+                                        class="form-control"
+                                        name="documento_reduccion"
+                                        accept=".pdf,.jpg,.png">
+
+                                    <small class="text-muted d-block mt-2">
+
+                                        Formats permesos: PDF, JPG i PNG
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-3 mt-5">
+
+                        <button 
+                            type="button"
+                            class="btn btn-outline-primary px-4 rounded-4">
+
+                            Guardar
+
+                        </button>
+
+                        <button 
+                            type="submit"
+                            class="btn btn-primary btn-lg px-5 rounded-4">
+
+                            Continuar al pagament
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
 
         </div>
+
     </div>
-</div>
 
-<script>
-    const select = document.getElementById('reduccionSelect');
-    const archivo = document.getElementById('archivoContainer');
+    <script>
 
-    select.addEventListener('change', function () {
-        if (this.value === "familia_numerosa" || this.value === "hermanos") {
-            archivo.style.display = "block";
-        } else {
-            archivo.style.display = "none";
-        }
-    }); 
+        const select = document.getElementById('reduccionSelect');
+        const archivo = document.getElementById('archivoContainer');
 
-</script>
+        select.addEventListener('change', function () {
+
+            if (
+                this.value === "familia_numerosa" ||
+                this.value === "hermanos"
+            ) {
+
+                archivo.style.display = "block";
+
+            } else {
+
+                archivo.style.display = "none";
+
+            }
+
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

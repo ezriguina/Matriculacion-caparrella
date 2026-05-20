@@ -1,232 +1,227 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
-<meta charset="UTF-8">
-<title>Requisitos de Matrícula · Matrícula Segura</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap + Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Requisitos de Matrícula</title>
 
-<style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-body{
-background: radial-gradient(circle at 10% 30%, #f0f4ff, #e0e8ff);
-font-family:'Inter',system-ui;
-min-height:100vh;
-display:flex;
-flex-direction:column;
-}
+    <style>
 
-/* NAVBAR */
-.navbar-premium{
-background: rgba(255,255,255,0.85);
-backdrop-filter: blur(16px);
-box-shadow:0 2px 12px rgba(0,0,0,0.05);
-padding:0.7rem 0;
-}
+        body{
+            min-height:100vh;
+            background:#f5f7ff;
+        }
 
-.brand-text{
-font-weight:700;
-background:linear-gradient(135deg,#1e3a8a,#2563eb);
--webkit-background-clip:text;
-color:transparent;
-}
+        .hero-side{
+            background:linear-gradient(135deg,#5f6ccf,#6f7de0);
+        }
 
-/* CARD */
-.glass-card{
-border-radius:2rem;
-background:rgba(255,255,255,0.45);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.5);
-box-shadow:0 20px 45px rgba(0,0,0,0.2);
-overflow:hidden;
-}
+        .check-card{
+            border:1px solid #e4e7f5;
+            transition:.2s ease;
+        }
 
-/* LEFT */
-.hero-side{
-background:linear-gradient(125deg,#1e2b6e,#2563eb);
-color:white;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:2.5rem;
-}
+        .check-card:hover{
+            border-color:#6f7de0;
+            background:#f8f9ff;
+            transform:translateY(-2px);
+        }
 
-.hero-side img{
-max-width:110px;
-margin-bottom:1.2rem;
-background:rgba(255,255,255,0.1);
-border-radius:60px;
-padding:0.5rem;
-}
+        .logo-text{
+            color:#5f6ccf;
+        }
 
-.hero-side h4{
-font-weight:700;
-}
+        .btn-primary{
+            background:#5f6ccf;
+            border-color:#5f6ccf;
+        }
 
-/* RIGHT */
-.form-side{
-background:rgba(255,255,255,0.75);
-backdrop-filter:blur(10px);
-padding:2.5rem;
-}
+        .btn-primary:hover{
+            background:#5260c2;
+            border-color:#5260c2;
+        }
 
-.form-title{
-font-weight:700;
-margin-bottom:1.5rem;
-border-left:5px solid #2563eb;
-padding-left:1rem;
-color:#0f2b4d;
-}
-             
-/* CHECKBOXES BONITOS */
-.form-check{
-background:white;
-border-radius:1rem;
-padding:0.8rem 1rem;
-margin-bottom:12px;
-border:1px solid #e5e7eb;
-transition:0.2s;
-}
+        .text-primary{
+            color:#5f6ccf !important;
+        }
 
-.form-check:hover{
-border-color:#3b82f6;
-box-shadow:0 0 0 3px rgba(59,130,246,0.1);
-}
-
-/* BOTÓN */
-.btn-gradient{
-background:linear-gradient(95deg,#1e40af,#3b82f6);
-border:none;
-border-radius:1.5rem;
-padding:0.8rem;
-font-weight:600;
-color:white;
-}
-
-.btn-gradient:hover{
-transform:translateY(-2px);
-background:linear-gradient(95deg,#1e3a8a,#2563eb);
-}
-
-/* FOOTER */
-.footer-note{
-font-size:0.75rem;
-text-align:center;
-margin-top:1rem;
-color:#4b5563;
-}
-
-</style>
+    </style>
 
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar-premium">
-<div class="container">
-<a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="#">
-<img src="<?= base_url('img/logo-removebg-preview.png') ?>" height="40">
-</a>
-</div>
-</nav>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
 
-<div class="container d-flex justify-content-center align-items-center flex-grow-1 py-5">
+        <div class="container">
 
-<div class="glass-card w-100" style="max-width:1000px;">
+            <a class="navbar-brand d-flex align-items-center gap-3 text-decoration-none" href="#">
 
-<div class="row g-0">
+                <img 
+                    src="<?= base_url('img/logo-removebg-preview.png') ?>" 
+                    height="55">
 
-<!-- IZQUIERDA -->
-<div class="col-md-5 hero-side">
+                <div class="fw-bold fs-4 logo-text lh-1">
 
-<img src="<?= base_url('img/logo-removebg-preview.png') ?>">
+                    Institut <br> Caparrella
 
-<h4>Requisitos de matrícula</h4>
+                </div>
 
-<p class="mt-3">
-Verifica que dispones de toda la documentación necesaria antes de iniciar el proceso.
-</p>
+            </a>
 
-</div>
+        </div>
 
-<div class="col-md-7 form-side">
+    </nav>
 
-<div class="form-title">
-<i class="bi bi-check2-square"></i> Comprobación de documentación
-</div>
+    <div class="container py-5">
 
-<form action="<?= base_url('matricula') ?>" method="post">
+        <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
 
-<?= csrf_field(); ?>
-<?= validation_list_errors() ?>
+            <div class="row g-0">
 
-<div class="form-check">
-<input class="form-check-input" type="checkbox" id="check1" name="check1">
-<label class="form-check-label" for="check1">
-2 Fotografía del DNI,NIE,PASSAPORTE (frente y reverso)
-</label>
-</div>
+                <div class="col-lg-5 hero-side text-white d-flex flex-column justify-content-center p-5">
 
-<div class="form-check">
-<input class="form-check-input" type="checkbox" id="check2" name="check2">
-<label class="form-check-label" for="check2">
-Documentación de familia numerosa 
-</label>
-</div>
+                    <img 
+                        src="<?= base_url('img/logo-removebg-preview.png') ?>"
+                        class="img-fluid mx-auto mb-4"
+                        style="max-width:120px;">
 
-<div class="form-check">
-<input class="form-check-input" type="checkbox" id="check3" name="check3">
-<label class="form-check-label" for="check3">
-Certificado de discapacidad (en caso de que tienes alguna descapacidad)
-</label>
-</div>
+                    <h2 class="fw-bold text-center mb-3">
+                        Requisitos de matrícula
+                    </h2>
 
-<div class="form-check mb-4">
-<input class="form-check-input" type="checkbox" id="check4" name="check4">
-<label class="form-check-label" for="check4">
-Documentación académica requerida
-</label>
-</div>
+                    <p class="text-center opacity-75 mb-0">
+                        Antes de iniciar el proceso, asegúrate de tener preparada toda la documentación necesaria.
+                    </p>
 
-<div class="d-grid">
-<button class="btn btn-gradient btn-lg">
-<i class="bi bi-arrow-right-circle me-2"></i> Empezar matriculación
-</button>
-</div>
+                </div>
 
-</form>
+                <div class="col-lg-7 bg-white p-4 p-lg-5">
 
-<div class="text-center mt-3">
-<a href="<?= base_url('privat/Dashboard/Instiut-Caparrella') ?>" class="text-decoration-none text-primary fw-semibold">
-<i class="bi bi-lock-fill"></i> Acceder a zona privada
-</a>
-</div>
+                    <div class="d-flex align-items-center gap-3 mb-4">
 
-<div class="footer-note">
-<i class="bi bi-shield-lock-fill"></i>
-© <?= date('Y') ?> Instituto Caparrella · Todos los derechos reservados
-</div>
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                            style="width:50px;height:50px;">
 
-</div>
+                            <i class="bi bi-check2-square"></i>
 
-</div>
+                        </div>
 
-</div>
+                        <div>
 
-</div>
+                            <h4 class="fw-bold mb-0">
+                                Verificación de documentos
+                            </h4>
+
+                            <small class="text-muted">
+                                Marca las opciones disponibles
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <form action="<?= base_url('matricula') ?>" method="post">
+
+                        <?= csrf_field(); ?>
+                        <?= validation_list_errors(); ?>
+
+                        <div class="vstack gap-3">
+
+                            <label class="check-card rounded-4 p-3 d-flex gap-3 align-items-start">
+
+                                <input class="form-check-input mt-1" type="checkbox" name="check1">
+
+                                <span>
+                                    2 fotografías del DNI, NIE o pasaporte (anverso y reverso)
+                                </span>
+
+                            </label>
+
+                            <label class="check-card rounded-4 p-3 d-flex gap-3 align-items-start">
+
+                                <input class="form-check-input mt-1" type="checkbox" name="check2">
+
+                                <span>
+                                    Documentación de familia numerosa
+                                </span>
+
+                            </label>
+
+                            <label class="check-card rounded-4 p-3 d-flex gap-3 align-items-start">
+
+                                <input class="form-check-input mt-1" type="checkbox" name="check3">
+
+                                <span>
+                                    Certificado de discapacidad (si aplica)
+                                </span>
+
+                            </label>
+
+                            <label class="check-card rounded-4 p-3 d-flex gap-3 align-items-start">
+
+                                <input class="form-check-input mt-1" type="checkbox" name="check4">
+
+                                <span>
+                                    Documentación académica requerida
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                        <div class="d-grid mt-4">
+
+                            <button type="submit" class="btn btn-primary btn-lg rounded-4 py-3">
+
+                                <i class="bi bi-arrow-right-circle me-2"></i>
+
+                                Empezar matriculación
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <div class="text-center mt-4">
+
+                        <a 
+                            href="<?= base_url('privat/Dashboard/Instiut-Caparrella') ?>"
+                            class="text-decoration-none fw-semibold text-primary">
+
+                            <i class="bi bi-lock-fill me-1"></i>
+
+                            Acceder a zona privada
+
+                        </a>
+
+                    </div>
+
+                    <div class="text-center text-muted small mt-4">
+
+                        <i class="bi bi-shield-lock-fill me-1"></i>
+
+                        © <?= date('Y') ?> Institut Caparrella
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>
