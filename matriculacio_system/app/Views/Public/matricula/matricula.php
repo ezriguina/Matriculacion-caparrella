@@ -135,17 +135,17 @@
                         <?= validation_list_errors(); ?>
 
                         <div class="vstack gap-3">
-
+                            
                             <label class="check-card rounded-4 p-3 d-flex gap-3 align-items-start">
-
+                                
                                 <input class="form-check-input mt-1" type="checkbox" name="check1">
-
+                                
                                 <span>
-                                    2 fotografías del DNI, NIE o pasaporte (anverso y reverso)
+                                    2 archivos(png,jpg,pdf) del DNI, NIE o pasaporte (frente y reverso)
                                 </span>
 
                             </label>
-
+                            
                             <label class="check-card rounded-4 p-3 d-flex gap-3 align-items-start">
 
                                 <input class="form-check-input mt-1" type="checkbox" name="check2">
@@ -161,7 +161,7 @@
                                 <input class="form-check-input mt-1" type="checkbox" name="check3">
 
                                 <span>
-                                    Certificado de discapacidad (si aplica)
+                                    2 archivos de Tarjeta Sanitaria TSI 
                                 </span>
 
                             </label>
@@ -171,7 +171,7 @@
                                 <input class="form-check-input mt-1" type="checkbox" name="check4">
 
                                 <span>
-                                    Documentación académica requerida
+                                    2 archivos() del DNI, NIE o pasaporte (frente y reverso) del Tutor legal
                                 </span>
 
                             </label>
