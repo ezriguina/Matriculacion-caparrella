@@ -10,7 +10,7 @@ class MatriculaModel extends Model
     protected $primaryKey       = 'id_matricula';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = ['id_alumne','id_curs','id_tandada','estado','pagado','created_at','updated_at','deleted_at'];
 

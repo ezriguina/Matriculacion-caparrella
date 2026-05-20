@@ -658,12 +658,12 @@ public function matricula_papelera()
 
             if ($dni_front && $dni_front->isValid()) {
                 $dniFrontName = $dni_front->getRandomName();
-                $dni_front->move(FCPATH . 'uploads/', $dniFrontName);
+                $dni_front->move(WRITEPATH . 'uploads/', $dniFrontName);
             }
-
+            
             if ($dni_back && $dni_back->isValid()) {
                 $dniBackName = $dni_back->getRandomName();
-                $dni_back->move(FCPATH . 'uploads/', $dniBackName);
+                $dni_back->move(WRITEPATH . 'uploads/', $dniBackName);
             }
 
             $alumnoData = [

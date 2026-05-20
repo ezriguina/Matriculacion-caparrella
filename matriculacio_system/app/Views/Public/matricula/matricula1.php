@@ -563,8 +563,76 @@
                                 </div>
 
                             </div>
+                            
 
                         </div>
+                                            <div class="card border-0 bg-light rounded-4 mb-4">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="section-title mb-4">
+
+                                <i class="bi bi-card-image me-2"></i>
+
+                                Documents DNI
+
+                            </h4>
+
+                            <div class="row g-4">
+
+                                <div class="col-md-6">
+
+                                    <div class="upload-box rounded-4 p-4 text-center bg-white h-100">
+
+                                        <img 
+                                            id="previewFront"
+                                            src="<?= base_url('img/1.png') ?>"
+                                            class="img-fluid rounded-3 mb-3"
+                                            style="max-height:200px; object-fit:cover;">
+
+                                        <label class="form-label fw-semibold">
+                                            DNI anvers
+                                        </label>
+
+                                        <input 
+                                            type="file"
+                                            class="form-control"
+                                            name="dniT_f"
+                                            accept="image/*">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="upload-box rounded-4 p-4 text-center bg-white h-100">
+
+                                        <img 
+                                            id="previewBack"
+                                            src="<?= base_url('img/2.png') ?>"
+                                            class="img-fluid rounded-3 mb-3"
+                                            style="max-height:200px; object-fit:cover;">
+
+                                        <label class="form-label fw-semibold">
+                                            DNI revers
+                                        </label>
+
+                                        <input 
+                                            type="file"
+                                            class="form-control"
+                                            name="dniT_b"
+                                            accept="image/*">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                     </div>
 

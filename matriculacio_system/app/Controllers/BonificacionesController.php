@@ -23,7 +23,7 @@ class BonificacionesController extends BaseController
 
         $data['bonificaciones'] = $bonificaciones;
 
-        return view('privat/Bonificaciones/B_list', $data);
+        return view('Admins/extras_matricula/Bonificaciones/B_list', $data);
     }
 
     public function B_create()
@@ -34,7 +34,7 @@ class BonificacionesController extends BaseController
 
         $data['cursos'] = $cursoModel->findAll();
 
-        return view('privat/Bonificaciones/B_create', $data);
+        return view('Admins/extras_matricula/Bonificaciones/B_create', $data);
     }
 
     public function B_post()
@@ -77,7 +77,7 @@ class BonificacionesController extends BaseController
         $data['bonificacion'] = $model->find($id);
         $data['cursos'] = $cursoModel->findAll();
 
-        return view('privat/Bonificaciones/B_edit', $data);
+        return view('Admins/extras_matricula/Bonificaciones/B_edit', $data);
     }
 
     public function B_edit_post($id)
@@ -126,6 +126,6 @@ class BonificacionesController extends BaseController
 
         $data['bonificacion'] = $model->find($id);
         
-        return view('privat/Bonificaciones/B_list', $data);
+        return view('Admins/extras_matricula/Bonificaciones/B_list', $data);
     }
 }
