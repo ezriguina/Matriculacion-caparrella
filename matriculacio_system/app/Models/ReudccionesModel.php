@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class ReudccionesModel extends Model
 {
     protected $table            = 'reudcciones';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_reduccion';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nombre','precio','documento','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

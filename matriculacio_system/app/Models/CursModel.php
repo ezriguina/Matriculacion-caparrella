@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class CursModel extends Model
 {
     protected $table            = 'curs';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_curs';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['Nom_curs','codigo_curs','precio','nivel_id','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

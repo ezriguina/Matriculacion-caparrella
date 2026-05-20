@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class TutorModel extends Model
 {
-    protected $table            = 'tutors';
-    protected $primaryKey       = 'id';
+    protected $table            = 'tutor_legal';
+    protected $primaryKey       = 'id_tutor';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nombre','apellidos','dni','telefono','email','direccion','ciudad','codigo_postal','documento_frente','documento_reverso','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

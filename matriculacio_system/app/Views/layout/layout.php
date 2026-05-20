@@ -83,7 +83,7 @@
             <i class="bi bi-gear"></i> Gestión
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<?= base_url('privat/Tandas') ?>">Tandas</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('privat/Tandada') ?>">Tandas</a></li>
             <li><a class="dropdown-item" href="<?= base_url('privat/Reducciones') ?>">Reducciones</a></li>
             <li><a class="dropdown-item" href="<?= base_url('privat/Bonificaciones') ?>">Bonificaciones</a></li>
           </ul>

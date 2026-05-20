@@ -7,12 +7,17 @@ use CodeIgniter\Model;
 class TandaModel extends Model
 {
     protected $table            = 'tandadas';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_tandada';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [ 'nom_tandada',
+    'fecha_inici',
+    'fecha_fin',
+    'estado',
+    'created_at',
+    'deleted_at',];
     
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

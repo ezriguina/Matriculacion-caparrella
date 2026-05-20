@@ -69,20 +69,20 @@ $routes->get('privat/cursos/delete/(:num)', 'CursController::delete/$1');
 //Tanda y Dash  
 
 
-$routes->get('privat/Dashboard/Instiut-Caparrella','MatriculaController::Dashborad_view',['filter' => 'auth']);
-$routes->get('privat/Tandada','TandadaController::Tanda_view',['filter' => 'auth']); 
-$routes->get('privat/Tandada/create','TandadaController::T_create',['filter' => 'auth']); 
-$routes->post('privat/Tandada/create','TandadaController::T_post',['filter' => 'auth']); 
+$routes->get('privat/Dashboard/Instiut-Caparrella','MatriculaController::Dashborad_view');
+$routes->get('privat/Tandada','TandaController::Tanda_view'); 
+$routes->get('privat/Tandada/create','TandaController::T_create'); 
+$routes->post('privat/Tandada/create','TandaController::T_post'); 
 
-$routes->get('privat/Tandada/edit/(:segment)','TandadaController::T_edit/$1',['filter' => 'auth']); 
-$routes->post('privat/Tandada/edit/(:segment)','TandadaController::T_edit_post/$1',['filter' => 'auth']); 
-$routes->post('privat/tandada/eliminar/(:segment)','TandadaController::T_delete/$1',['filter' => 'auth']);
+$routes->get('privat/Tandada/edit/(:segment)','TandaController::T_edit/$1',['filter' => 'auth']); 
+$routes->post('privat/Tandada/edit/(:segment)','TandaController::T_edit_post/$1',['filter' => 'auth']); 
+$routes->post('privat/tandada/eliminar/(:segment)','TandaController::T_delete/$1',['filter' => 'auth']);
 
 //GESTION USERS 
 
 $routes->get('privat/Users/list','UsersController::user_list') ; 
-$routes->get('privat/Users/create','UsersController::U_create',['filter' => 'auth']); 
-$routes->post('privat/Users/create','UsersController::U_post',['filter' => 'auth']); 
+$routes->get('privat/Users/create','UsersController::U_create'); 
+$routes->post('privat/Users/create','UsersController::U_post'); 
 
 $routes->get('privat/Users/edit/(:segment)','UsersController::U_edit/$1',['filter' => 'auth']); 
 $routes->post('privat/Users/edit/(:segment)','UsersController::U_edit_post/$1',['filter' => 'auth']); 

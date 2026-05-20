@@ -310,12 +310,18 @@
     </div>
 </div>
 
+                <div class="d-flex justify-content-center gap-3 mt-4">
 
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary btn-lg px-5 rounded-3">
-                        SEGUIENTE
-                    </button>
-                </div>
+    <button type="button" class="btn btn-outline-primary px-4 rounded-3">
+        Guardar cambios
+    </button>
+
+    <button type="submit" class="btn btn-primary btn-lg px-5 rounded-3">
+        Siguiente
+    </button>
+
+</div>
+               
 
             </form>
         </div>

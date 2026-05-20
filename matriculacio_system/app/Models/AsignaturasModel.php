@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class AsignaturasModel extends Model
 {
     protected $table            = 'asignaturas';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_asig';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nombre','codigo','tipo','precio','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +21,7 @@ class AsignaturasModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

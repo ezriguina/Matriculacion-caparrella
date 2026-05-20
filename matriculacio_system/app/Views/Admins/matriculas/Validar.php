@@ -1,11 +1,11 @@
-<?= $this->extend('privat/layout') ?>
+<?= $this->extend('layout/layout') ?>
+
 <?= $this->section('content') ?>
 
 <div class="container py-4">
 
     <h2 class="mb-4">Validar Matrícula</h2>
 
-    <!-- ================= ALUMNO ================= -->
     <div class="card mb-4 shadow-sm">
         <div class="card-header bg-primary text-white">
             Datos del Alumno

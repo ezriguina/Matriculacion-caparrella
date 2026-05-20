@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class NivelModel extends Model
 {
     protected $table            = 'nivels';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_nivel';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nombre','descripcion','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

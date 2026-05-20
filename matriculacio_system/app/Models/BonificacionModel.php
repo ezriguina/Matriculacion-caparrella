@@ -6,14 +6,14 @@ use CodeIgniter\Model;
 
 class BonificacionModel extends Model
 {
-    protected $table            = 'bonificacions';
-    protected $primaryKey       = 'id';
+    protected $table            = 'bonificaciones';
+    protected $primaryKey       = 'id_bonificacion';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
-
+    protected $allowedFields    = ['nombre','precio','id_curso','created_at','updated_at','deleted_at'];
+    
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 

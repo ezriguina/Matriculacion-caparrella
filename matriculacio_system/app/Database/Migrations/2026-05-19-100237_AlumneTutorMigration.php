@@ -23,9 +23,9 @@ class AlumneTutorMigration extends Migration
 
         $this->forge->addForeignKey('alumno_id', 'alumne', 'id_alumne');
 
-$this->forge->addForeignKey('tutor_id', 'tutor_legal', 'id_tutor');
+        $this->forge->addForeignKey('tutor_id', 'tutor_legal', 'id_tutor');
         $this->forge->createTable('alumno_tutor');
-    }
+       }
 
     public function down()
     {

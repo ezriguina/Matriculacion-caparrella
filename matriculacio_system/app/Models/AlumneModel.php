@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class AlumneModel extends Model
 {
-    protected $table            = 'alumnes';
-    protected $primaryKey       = 'id';
+    protected $table            = 'alumne';
+    protected $primaryKey       = 'id_alumne';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['Nom_alumne','Cognom_alumne','Dni_alumne','Pass_login','correo_alumne','tsi','poblacio','data_naixement','domicili','tlf_familiar','municipi','codi_postal','tlf_alumne','tlf_aux','id_tutor','foto_documento_frente','foto_documento_reverso','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +21,7 @@ class AlumneModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

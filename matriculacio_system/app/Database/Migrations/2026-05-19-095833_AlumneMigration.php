@@ -103,7 +103,7 @@ class AlumneMigration extends Migration
                 'null' => true,
             ],
         ]);
-
+        
         $this->forge->addKey('id_alumne', true);
         $this->forge->createTable('alumne');
     }

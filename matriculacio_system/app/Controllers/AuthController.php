@@ -16,7 +16,7 @@ class AuthController extends BaseController
     public function login(){
         helper('form'); 
        
-        return view('privat/Auth/login'); 
+        return view('Admins/Auth/login'); 
     } 
 
     public function login_post(){

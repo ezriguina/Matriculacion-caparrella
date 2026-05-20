@@ -73,14 +73,10 @@ class MatriculaController extends BaseController
     helper('form') ;
     $TandadaModel=new TandaModel(); 
 
-    if(!$TandadaModel){
-        $data['Tand']='Tandada por defecto'; 
-    }
-    
-    $data['Tand'] = $TandadaModel->where('estado','1')->first() ; 
+    $data['Tand'] = $TandadaModel->where('estado','activa')->first() ; 
     
     return view('public/matricula/matricula1',$data);
-      
+    
     }
 
     public function m_alumne_post(){
@@ -144,12 +140,12 @@ return redirect()->to('matricula/datos_alumne')->withInput()->with('errors', $va
 
 if ($dni_front && $dni_front->isValid() && !$dni_front->hasMoved()) {
     $dniFrontName = $dni_front->getRandomName();
-    $dni_front->move(FCPATH.'uploads/', $dniFrontName);
+    $dni_front->move(WRITEPATH.'uploads/', $dniFrontName);
 }
 
 if ($dni_back && $dni_back->isValid() && !$dni_back->hasMoved()) {
     $dniBackName = $dni_back->getRandomName();
-    $dni_back->move(FCPATH.'uploads/', $dniBackName);
+    $dni_back->move(WRITEPATH.'uploads/', $dniBackName);
 }
 //datos tutor 
 $tutor = null;
@@ -164,7 +160,7 @@ if (!empty($tutor_nombre)) {
         'email' => $tutor_email,
         'alumno_id' => null 
     ];
-
+    
     $tutor = $TutorModel->insert($tutorData);
 }
    
@@ -411,7 +407,7 @@ public function Dashborad_view()
 
 
 
-    return view('privat/dashboard', $data);
+    return view('Admins/dashboard', $data);
 }  
 
 public function Matricula_list(){ 
@@ -465,7 +461,7 @@ public function Matricula_list(){
     $data['pager'] = $matriculaModel->pager; 
 
     
-    return view('privat/Expedientes/matriculas/matriculas_list',$data) ; 
+    return view('Admins/matriculas/matriculas_list',$data) ; 
 
 }
 
@@ -497,7 +493,7 @@ public function Matricula_validar($id)
 
     ];
 
-    return view('privat/Expedientes/matriculas/validar', $data);
+    return view('Admins/matriculas/validar', $data);
 }
 
 public function Matricula_validar_post($id)
@@ -564,7 +560,7 @@ public function search()
         'keyword' => $keyword
     ];
 
-    return view('privat/Expedientes/matriculas/matriculas_list', $data);
+    return view('Admins/matriculas/matriculas_list', $data);
 }
 
 public function matricula_delete($id)
@@ -606,7 +602,7 @@ public function matricula_papelera()
         ->onlyDeleted()
         ->findAll();
 
-    return view('privat/Expedientes/matriculas/papelera', $data);
+    return view('Admins/matriculas/papelera', $data);
 }
 
  public function crear()
@@ -621,7 +617,7 @@ public function matricula_papelera()
             'bonificaciones' => $bonifModel->findAll()
         ];
 
-        return view('privat/Expedientes/matriculas/Matricula_Manual', $data);
+        return view('Admins/matriculas/Matricula_Manual', $data);
     }
     
 
@@ -776,7 +772,7 @@ public function matricula_papelera()
         'bonificaciones' => $BonifModel->findAll()
     ];
 
-    return view('privat/Expedientes/matriculas/Matricula_edit', $data);
+    return view('Admins/matriculas/Matricula_edit', $data);
 }
 public function edit_matricula_post($id)
 {
