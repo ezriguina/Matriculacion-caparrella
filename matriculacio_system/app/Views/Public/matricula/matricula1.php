@@ -724,6 +724,13 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     const modal = new bootstrap.Modal(
+        document.getElementById('confirmModal')
+    );
+
+    const botonEnviar = document.getElementById('enviar');
+
+    const formulario = document.getElementById('formMatricula');
+
     botonEnviar.addEventListener('click', function (e) {
 
         e.preventDefault();
