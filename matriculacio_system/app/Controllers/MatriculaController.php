@@ -294,7 +294,7 @@ public function pago_view()
     ];
 
     
-    return view('public/matricula/Resum_pago', $data); 
+    return view('public/matricula/matricula_pago', $data); 
 
 }
 

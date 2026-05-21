@@ -9,13 +9,13 @@
     <h1>pagos de la matricula 
 
      <div class="card mb-4 border-0 bg-light">
-
+              <form <?= base_url() ?> action="post">
                 <div class="card-body">
 
                     <h5 class="mb-3">
                         Resumen de matrícula
                     </h5>
-
+            
                     <ul class="list-group">
 
                         <li class="list-group-item d-flex justify-content-between">
@@ -38,6 +38,7 @@
                             <strong><?= esc($curs['codigo_curs']) ?></strong>
                         </li>
         
-    </h1>
+    </h1> 
+    </form>
 </body>
 </html>
