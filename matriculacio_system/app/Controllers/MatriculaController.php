@@ -266,11 +266,12 @@ return redirect()->to('matricula/pago');
 public function pago_view()
 {
     $session=session(); 
-
+    
     $matriculaModel = new MatriculaModel();
     $AlumneModel =  new AlumneModel();
     $Cursmodel =new CursModel();
-    
+    $tandaModel = new TandaModel() ; 
+    $tutorModel = new TutorModel();
     if (!$session->has('id_alumne') || !$session->has('id_curs')) {
     return redirect()->to('matricula/datos_curs')->with('error',' te falta datos del alumne o curs ')->withInput();
     }
@@ -278,7 +279,11 @@ public function pago_view()
     $id_Alumne = session()->get('id_alumne');
     $id_Curs = session()->get('id_curs');
     //$id_bonificaion = session()->get('id_bonificacion'); 
-
+    $id_bonificacion = $session->get('id_bonificacion') ; 
+    //$id_tutor = $AlumneModel->where('id_tutor',) ; 
+    //$id_tutor = $tutorModel->where('',);
+    $tandada = $tandaModel->where('estado', '1')->first();
+    
     $alumne=$AlumneModel->find($id_Alumne);
     $curs=$Cursmodel ->find($id_Curs);
     
@@ -289,7 +294,8 @@ public function pago_view()
     ];
 
     
-    return view('public/matricula/matricula_pago', $data);
+    return view('public/matricula/Resum_pago', $data); 
+
 }
 
 
@@ -308,15 +314,22 @@ public function pago_post()
     $id_alumne = $session->get('id_alumne');
     $id_curs = $session->get('id_curs') ; 
     $id_bonificacion = $session->get('id_bonificacion') ; 
-
+    
     $tandada = $tandadaModel->where('estado', '1')->first();
     
     if (!$tandada) {
         return redirect()->back()->with('error', 'No hay tandada activa.');
     }
-
+    
     $comp = $this->request->getFile('comprov_pago');
+    $validation = [
+    'comprov_pago'  => 'required',
+    ];
 
+    if(!$this->validate($validation)){
+        return redirect()->back()->withInput()->with('error',$this->validator);
+    }
+    
     $data = [
         'id_alumne'        => $id_alumne,
         'id_curs'          => $id_curs,
@@ -340,7 +353,7 @@ public function pago_post()
     
     $id_alumne = $session->get('id_alumne');
     $id_curs = $session->get('id_curs');
-
+    
     $alumne = $AlumneModel->find($id_alumne);
     $curs = $CursModel->find($id_curs);
     
@@ -361,7 +374,7 @@ public function pago_post()
 
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
-
+    
     $pdf->AddPage();
 
     $pdf->writeHTML($html);
@@ -562,7 +575,7 @@ public function search()
 
     return view('Admins/matriculas/matriculas_list', $data);
 }
-
+ 
 public function matricula_delete($id)
 {
     $matriculaModel = new MatriculaModel();
@@ -687,7 +700,7 @@ public function matricula_papelera()
         }
 
         $id_tutor = null;
-
+        
         if ($this->request->getPost('tutor_nombre')) {
 
             $tutorData = [
@@ -773,7 +786,8 @@ public function matricula_papelera()
     ];
 
     return view('Admins/matriculas/Matricula_edit', $data);
-}
+} 
+
 public function edit_matricula_post($id)
 {
     helper('form');

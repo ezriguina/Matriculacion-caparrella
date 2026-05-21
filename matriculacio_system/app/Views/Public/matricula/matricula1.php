@@ -170,7 +170,7 @@
 
                 </div>
 
-                <form action="<?= base_url('matricula/datos_alumne') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('matricula/datos_alumne') ?>" method="post" enctype="multipart/form-data" id="formMatricula">
 
                     <?= csrf_field(); ?>
                     <?= validation_list_errors(); ?>
@@ -308,10 +308,23 @@
                                     </label>
 
                                     <input 
-                                        type="tel"
+                                        type="number"
                                         class="form-control"
                                         name="tlf_alumne"
                                         value="<?= old('tlf_alumne'); ?>">
+
+                                </div>
+                                 <div class="col-md-6">
+
+                                    <label class="form-label fw-semibold">
+                                        Telèfon Auxiliar
+                                    </label>
+
+                                    <input 
+                                        type="tel"
+                                        class="form-control"
+                                        name="tlf_familiar"
+                                        value="<?= old('tlf_familiar'); ?>">
 
                                 </div>
 
@@ -640,7 +653,7 @@
 
                         <button type="button" class="btn btn-outline-primary px-4 rounded-4"> Guardar</button>
 
-                        <button  type="submit" class="btn btn-primary btn-lg px-5 rounded-4">Continuar</button>
+                        <button  type="submit" class="btn btn-primary btn-lg px-5 rounded-4" id="enviar">Continuar</button>
 
                     </div>
 
@@ -652,8 +665,81 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade" id="confirmModal" tabindex="-1">
 
-</body>
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content rounded-4 border-0 shadow">
+
+            <div class="modal-header border-0">
+
+                <h5 class="modal-title">
+                    Confirmar datos
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <i class="bi bi-exclamation-circle text-warning fs-1"></i>
+
+                <p class="mt-3 mb-0">
+                    Revisa que todos los datos sean correctos antes de enviar.
+                </p>
+             
+            </div>
+
+            <div class="modal-footer border-0">
+
+                <button type="button"
+                        class="btn btn-light rounded-3"
+                        data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+
+                <button type="button"
+                        id="confirmarEnvio"
+                        class="btn btn-primary rounded-3">
+                    Sí, enviar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+
+    </div>
+</div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const modal = new bootstrap.Modal(
+    botonEnviar.addEventListener('click', function (e) {
+
+        e.preventDefault();
+
+        modal.show();
+
+    });
+
+    document.getElementById('confirmarEnvio')
+        .addEventListener('click', function () {
+
+            formulario.submit();
+
+        });
+
+});
+</script>
 
 </html>
