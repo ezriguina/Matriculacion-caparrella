@@ -107,7 +107,7 @@
 
             <a 
                 class="navbar-brand d-flex align-items-center gap-3 text-decoration-none"
-                href="<?= base_url('privat/dashboard') ?>">
+                href="<?= base_url('privat/Dashboard/Instiut-Caparrella') ?>">
 
                 <img 
                     src="<?= base_url('img/logo-removebg-preview.png') ?>"
@@ -139,7 +139,7 @@
 
                         <a 
                             class="nav-link px-3"
-                            href="<?= base_url('privat/dashboard') ?>">
+                            href="<?= base_url('privat/Dashboard/Instiut-Caparrella') ?>">
 
                             <i class="bi bi-speedometer2 me-2"></i>
 
