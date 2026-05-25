@@ -449,24 +449,8 @@ public function Matricula_list(){
         ->orderBy('created_at', 'DESC')
         ->paginate(10, 'default');
 
-    foreach ($matriculas as &$m) {
 
-    $alumno = $alumneModel->find($m['id_alumne']);
-    //aqui tengo que usar builder con joins 
-    if ($alumno) {
-        $m['Nom_alumne'] = $alumno['Nom_alumne'];
-    } 
-
-    $curso = $cursModel->find($m['id_curs']);
-
-    if ($curso) {
-        $m['Nom_curs'] = $curso['Nom_curs'];
-    } 
-      $Tanda = $TandadaModel->find($m['id_tandada']);
-
-   $m['Nom_Tanda'] = $Tanda['nom_tandada'] ?? 'Null';
-   
-}
+    
  $builder = $matriculaModel
         ->select(' matricula.*, alumne.Nom_alumne, alumne.Cognom_alumne, curs.Nom_curs,tandadas.nom_tandada')
         ->join('alumne', 'alumne.id_alumne = matricula.id_alumne')
@@ -474,7 +458,7 @@ public function Matricula_list(){
         ->join('Tandadas','tandadas.id_tandada = matricula.id_tandada ')
         ->orderBy('matricula.created_at', 'DESC');
 
-   // $matriculas = $builder ; 
+    $matriculas = $builder->paginate(10,'default'); 
 
     $data['matriculas'] = $matriculas; 
     $data['alumne'] = $alumne; 
@@ -541,7 +525,7 @@ public function Matricula_validar_post($id)
 }
 
 public function search()
-{
+{    
     $keyword = $this->request->getGet('keyword');
     $cursoSeleccionado = $this->request->getGet('curso') ?? '';
 
@@ -615,10 +599,18 @@ public function matricula_recup($id)
 public function matricula_papelera()
 {
     $matriculaModel = new MatriculaModel();
+    
+    $builder = $matriculaModel
+        ->select(' matricula.*, alumne.Nom_alumne, alumne.Cognom_alumne, curs.Nom_curs,tandadas.nom_tandada')
+        ->join('alumne', 'alumne.id_alumne = matricula.id_alumne')
+        ->join('curs', 'curs.id_curs = matricula.id_curs')
+        ->join('Tandadas','tandadas.id_tandada = matricula.id_tandada ')
+        ->orderBy('matricula.created_at', 'DESC');
 
-    $data['matriculas'] = $matriculaModel
-        ->onlyDeleted()
-        ->findAll();
+    $matriculas = $builder->onlyDeleted()->findAll();; 
+
+    $data['matriculas'] = $matriculas ;
+    
 
     return view('Admins/matriculas/papelera', $data);
 }

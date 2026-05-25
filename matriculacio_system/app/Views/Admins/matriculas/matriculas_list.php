@@ -117,7 +117,7 @@
                                 </div>
                             </td>
                             <td><?= esc($m['Nom_curs']) ?></td>
-                            <td><?= esc($m['Nom_Tanda']) ?></td>
+                            <td><?= esc($m['nom_tandada']) ?></td>
                             <td>
                                 <?php if ($m['estado'] == 1): ?>
                                     <span class="mat-badge mat-badge-validada">

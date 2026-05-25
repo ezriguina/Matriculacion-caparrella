@@ -30,8 +30,8 @@
                     <tbody>
                         <?php foreach ($matriculas as $m): ?>
                         <tr>
-                            <td><?= esc($m['id_alumne']) ?></td>
-                            <td><?= esc($m['id_curs']) ?></td>
+                            <td><?= esc($m['Nom_alumne']) ?>, <?= esc($m['Cognom_alumne']) ?></td>
+                            <td><?= esc($m['Nom_curs']) ?></td>
                             <td><?= esc($m['deleted_at']) ?></td>
 
                             <td class="text-center">
