@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class NivelModel extends Model
 {
-    protected $table            = 'nivels';
+    protected $table            = 'niveles';
     protected $primaryKey       = 'id_nivel';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -19,9 +19,9 @@ class NivelModel extends Model
 
     protected array $casts = [];
     protected array $castHandlers = [];
-
+    
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

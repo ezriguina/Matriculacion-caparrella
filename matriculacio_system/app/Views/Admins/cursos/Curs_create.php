@@ -15,7 +15,7 @@
             <form method="post" action="<?= base_url('privat/cursos/store') ?>">
                 
                 <?= csrf_field() ?>
-
+                
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
                     <input 

@@ -184,7 +184,7 @@
 
                             <li>
                                 <a class="dropdown-item"
-                                    href="<?= base_url('privat/niveles') ?>">
+                                    href="<?= base_url('privat/Nivelles/listado') ?>">
 
                                     Niveles
 
