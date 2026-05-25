@@ -139,13 +139,13 @@ return redirect()->to('matricula/datos_alumne')->withInput()->with('errors', $va
      $dniBackName = null;
 
 if ($dni_front && $dni_front->isValid() && !$dni_front->hasMoved()) {
-    $dniFrontName = $dni_front->getRandomName();
-    $dni_front->move(WRITEPATH.'uploads/', $dniFrontName);
+    $dniFrontName = $dni."_front";
+    $dni_front->move(FCPATH.'uploads/', $dniFrontName);
 }
 
 if ($dni_back && $dni_back->isValid() && !$dni_back->hasMoved()) {
-    $dniBackName = $dni_back->getRandomName();
-    $dni_back->move(WRITEPATH.'uploads/', $dniBackName);
+    $dniBackName = $dni."_back";
+    $dni_back->move(FCPATH.'uploads/', $dniBackName);
 }
 //datos tutor 
 $tutor = null;
@@ -296,7 +296,7 @@ public function pago_view()
         'curs' => $curs,
        // 'bonif'=> $id_bonificaion
     ];
-
+    
     
     return view('public/matricula/matricula_pago', $data); 
 
@@ -444,7 +444,7 @@ public function Matricula_list(){
     if (!empty($cursoSeleccionado)) {
         $matriculaModel->where('id_curs', $cursoSeleccionado);
     }
-
+    
     $matriculas = $matriculaModel
         ->orderBy('created_at', 'DESC')
         ->paginate(10, 'default');
@@ -452,7 +452,7 @@ public function Matricula_list(){
     foreach ($matriculas as &$m) {
 
     $alumno = $alumneModel->find($m['id_alumne']);
-    
+    //aqui tengo que usar builder con joins 
     if ($alumno) {
         $m['Nom_alumne'] = $alumno['Nom_alumne'];
     } 
@@ -465,9 +465,17 @@ public function Matricula_list(){
       $Tanda = $TandadaModel->find($m['id_tandada']);
 
    $m['Nom_Tanda'] = $Tanda['nom_tandada'] ?? 'Null';
-
+   
 }
-    
+ $builder = $matriculaModel
+        ->select(' matricula.*, alumne.Nom_alumne, alumne.Cognom_alumne, curs.Nom_curs,tandadas.nom_tandada')
+        ->join('alumne', 'alumne.id_alumne = matricula.id_alumne')
+        ->join('curs', 'curs.id_curs = matricula.id_curs')
+        ->join('Tandadas','tandadas.id_tandada = matricula.id_tandada ')
+        ->orderBy('matricula.created_at', 'DESC');
+
+   // $matriculas = $builder ; 
+
     $data['matriculas'] = $matriculas; 
     $data['alumne'] = $alumne; 
     $data['curs'] = $curs;  
@@ -542,14 +550,9 @@ public function search()
     $TandadaModel = new TandaModel(); 
 
     $cursos = $cursModel->findAll();
-
+    //builder para los joins se tiene que cambiar y usar en el model
     $builder = $matriculaModel
-        ->select('
-            matricula.*,
-            alumne.Nom_alumne,
-            alumne.Cognom_alumne,
-            curs.Nom_curs
-        ')
+        ->select(' matricula.*, alumne.Nom_alumne, alumne.Cognom_alumne, curs.Nom_curs')
         ->join('alumne', 'alumne.id_alumne = matricula.id_alumne')
         ->join('curs', 'curs.id_curs = matricula.id_curs')
         ->orderBy('matricula.created_at', 'DESC');
@@ -566,7 +569,7 @@ public function search()
     }
 
     $matriculas = $builder->paginate(10);
-
+    
     $data = [
         'matriculas' => $matriculas,
         'pager' => $matriculaModel->pager,
@@ -668,18 +671,18 @@ public function matricula_papelera()
             $dni_front = $this->request->getFile('dni_f');
             $dni_back  = $this->request->getFile('dni_b');
 
-            $dniFrontName = null;
-            $dniBackName = null;
+               $dniFrontName = null;
+               $dniBackName = null;
 
-            if ($dni_front && $dni_front->isValid()) {
-                $dniFrontName = $dni_front->getRandomName();
-                $dni_front->move(WRITEPATH . 'uploads/', $dniFrontName);
-            }
-            
-            if ($dni_back && $dni_back->isValid()) {
-                $dniBackName = $dni_back->getRandomName();
-                $dni_back->move(WRITEPATH . 'uploads/', $dniBackName);
-            }
+        if ($dni_front && $dni_front->isValid() && !$dni_front->hasMoved()) {
+        $dniFrontName = $dni."_front";
+        $dni_front->move(FCPATH.'uploads/', $dniFrontName);
+        }
+
+         if ($dni_back && $dni_back->isValid() && !$dni_back->hasMoved()) {
+         $dniBackName = $dni."_back";
+         $dni_back->move(FCPATH.'uploads/', $dniBackName);
+         }
 
             $alumnoData = [
                 'Nom_alumne' => $this->request->getPost('nom_alumne'),
