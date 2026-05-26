@@ -30,7 +30,6 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th class="text-center">Acciones</th>
@@ -40,7 +39,6 @@
                     <tbody>
                         <?php foreach($Niveles as $Nivel): ?>
                         <tr>
-                            <td><?= esc($Nivel['id_nivel']) ?></td>
                             <td><?= esc($Nivel['nombre']) ?></td>
                             <td><?= esc($Nivel['descripcion']) ?> €</td>
 
@@ -85,7 +83,6 @@
 
                                 <hr>
 
-                                <p><strong>ID:</strong> <?= esc($Nivel['id_nivel']) ?></p>
                                 <p><strong>Nombre :</strong> <?= esc($Nivel['nombre']) ?></p>
                                 <p><strong>descripcion :</strong> <?= esc($Nivel['descripcion']) ?> €</p>
 

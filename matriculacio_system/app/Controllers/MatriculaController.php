@@ -370,7 +370,7 @@ public function pago_post()
     
     $pdf->SetCreator($alumne['Nom_alumne']);
     $pdf->SetAuthor('Caparrella matriculacion ');
-    $pdf->SetTitle('Matricula');
+    $pdf->SetTitle('Matricula'.$alumne['Dni_alumne']);
     $pdf->SetMargins(15, 15, 15);
     $pdf->SetAutoPageBreak(TRUE, 15);
 
@@ -380,9 +380,13 @@ public function pago_post()
     $pdf->AddPage();
 
     $pdf->writeHTML($html);
-
     
-    $pdf->Output('matricula.pdf', 'D');
+    
+    $pdf->Output($alumne['Dni_alumne'].'.pdf', 'D'); 
+
+    $rutaPdf = WRITEPATH . 'uploads/' .$alumne['Dni_alumne'].'.pdf' ;
+
+   $pdf->Output($rutaPdf, 'F');
 }
  
 //----------------------------------------------------------------------------
@@ -491,7 +495,7 @@ public function Matricula_validar($id)
 
     if (!empty($alumno['id_tutor'])) {
         $tutor = $tutorModel->find($alumno['id_tutor']);
-    }
+    } 
     $data = [
         'matricula' => $matricula,
         'alumno'    => $alumno,
@@ -667,12 +671,12 @@ public function matricula_papelera()
                $dniBackName = null;
 
         if ($dni_front && $dni_front->isValid() && !$dni_front->hasMoved()) {
-        $dniFrontName = $dni."_front";
+        $dniFrontName = $dni."_front.png";
         $dni_front->move(FCPATH.'uploads/', $dniFrontName);
         }
 
          if ($dni_back && $dni_back->isValid() && !$dni_back->hasMoved()) {
-         $dniBackName = $dni."_back";
+         $dniBackName = $dni."_back.png";
          $dni_back->move(FCPATH.'uploads/', $dniBackName);
          }
 

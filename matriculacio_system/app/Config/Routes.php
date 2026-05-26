@@ -54,7 +54,7 @@ $routes->post('matricula/datos_pagament','MatriculaController::m_pagament_post')
 
 $routes->get('privat/cursos', 'CursController::index',['filter' => 'auth']);
 $routes->get('privat/cursos/create', 'CursController::create',['filter' => 'auth']);
-$routes->post('privat/cursos/store', 'CursController::store',['filter' => 'auth']);
+$routes->post('privat/cursos/store', 'CursController::Create_post',['filter' => 'auth']);
 
 $routes->get('privat/cursos/edit/(:num)', 'CursController::edit/$1',['filter' => 'auth']);
 $routes->post('privat/cursos/update/(:num)', 'CursController::update/$1',['filter' => 'auth']);

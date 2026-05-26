@@ -35,7 +35,15 @@
                         placeholder="Ej: PROG-001"
                         required>
                 </div>
-
+              <div class="mb-3">
+                <label class="form-label">Nivel</label>
+                <select name="nivel" class="form-select" >
+                    <?php foreach($nivels as $nivel) :?>
+                    <option value="<?= esc($nivel['nombre']) ?>"><?= esc($nivel['nombre']) ?></option>
+                    
+                    <?php endforeach ;?>
+                </select>
+              </div>
                 <div class="mb-3">
                     <label class="form-label">Precio (€)</label>
                     <input 

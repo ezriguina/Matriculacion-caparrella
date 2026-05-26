@@ -30,7 +30,7 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>ID</th>
+                            <th>Nivell</th>
                             <th>Nombre</th>
                             <th>Código</th>
                             <th>Precio</th>
@@ -41,11 +41,11 @@
                     <tbody>
                         <?php foreach($cursos as $curso): ?>
                         <tr>
-                            <td><?= esc($curso['id_curs']) ?></td>
+                            <td><?= esc($curso['nombre']);?></td>
                             <td><?= esc($curso['Nom_curs']) ?></td>
                             <td><?= esc($curso['codigo_curs']) ?></td>
                             <td><?= esc($curso['precio']) ?> €</td>
-
+                            
                             <td class="text-center">
 
                                 <button 
@@ -87,7 +87,7 @@
 
                                 <hr>
 
-                                <p><strong>ID:</strong> <?= esc($curso['id_curs']) ?></p>
+                                <p><strong>Nivel:</strong> <?= esc($curso['nombre']) ?></p>
                                 <p><strong>Nombre:</strong> <?= esc($curso['Nom_curs']) ?></p>
                                 <p><strong>Código:</strong> <?= esc($curso['codigo_curs']) ?></p>
                                 <p><strong>Precio:</strong> <?= esc($curso['precio']) ?> €</p>
