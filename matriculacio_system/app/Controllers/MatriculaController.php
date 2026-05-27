@@ -14,6 +14,7 @@ use App\Models\ReudccionesModel;
 use App\Models\TandaModel;
 use App\Models\TutorModel;
 use App\Models\UserModel;
+use App\Models\NivelModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -403,6 +404,8 @@ public function Dashborad_view()
     $TandadaModel   = new TandaModel();
     $UserModel     = new UserModel() ;  
     $bonifModel    =new BonificacionModel(); 
+    $Nivelmodel = new NivelModel() ;
+
     //$reduccModel   =new ReduccModel(); 
 
     
@@ -411,9 +414,15 @@ public function Dashborad_view()
             $role = $session->get('role');  
             $MatriculaValid = $matriculaModel->where('estado','1'); 
             
+      $builder = $CursModel
+        ->select('Curs.*,niveles.nombre')
+        ->join('niveles', 'niveles.id_nivel = curs.nivel_id')
+        ->orderBy('curs.created_at', 'DESC')->findAll();
+    
     $data = [
         'totalAlumnos'    => $AlumneModel->countAll(),
         'totalCursos'     => $CursModel->countAll(),
+        //'Cursos'          => $CursModel,
         'totalMatriculas' => $matriculaModel->countAll(),
         'MatriculaV'      => $MatriculaValid->countAll(),
         'totalMensajes'   => $mensajeModel->countAll(),
@@ -767,7 +776,7 @@ public function matricula_papelera()
     $TutorModel = new TutorModel();
     $CursModel = new CursModel();
     $BonifModel = new BonificacionModel();
-
+    
     $matricula = $MatriculaModel->find($id);
 
     if (!$matricula) {
@@ -777,7 +786,7 @@ public function matricula_papelera()
 
     $alumno = $AlumneModel->find($matricula['id_alumne']);
     //$tutor = $TutorModel->where('alumno_id', $matricula['id_alumne'])->first();
-
+    
     $data = [
         'matricula' => $matricula,
         'alumno' => $alumno,

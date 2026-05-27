@@ -119,7 +119,7 @@
                         <select name="id_bonificacion" class="form-select">
                             <option value="">Sin bonificacion</option>
                             <?php foreach($bonificaciones as $b): ?>
-                                <option value="<?= $b['id_bonificacion'] ?>" <?= $b['id_bonificacion']==$matricula['id_bonificacion']?'selected':'' ?>>
+                                <option value="<?= $b['id_bonificacion'] ?>"?>>
                                     <?= $b['nombre'] ?>
                                 </option>
                             <?php endforeach; ?>
@@ -130,8 +130,8 @@
                 <div class="row g-3 mb-4">
                     <div class="col-md-6">
                         <select name="tipo_matricula" class="form-select">
-                            <option value="normal" <?= $matricula['tipo_matricula']=='normal'?'selected':'' ?>>Normal</option>
-                            <option value="continuidad" <?= $matricula['tipo_matricula']=='continuidad'?'selected':'' ?>>Continuidad</option>
+                            <option value="normal">Normal</option>
+                            <option value="continuidad">Continuidad</option>
                         </select>
                     </div>
 

@@ -9,6 +9,7 @@ class ReduccionesController extends BaseController
 {
     public function index(){}
 
+
     public function reducciones_view()
     {
         helper('form');
@@ -17,14 +18,15 @@ class ReduccionesController extends BaseController
 
         $data['reducciones'] = $model->paginate(6);
 
-        return view('privat/Reducciones/reducciones_list', $data);
+        return view('Admins/extras_matricula/reducciones/r_list', $data);
+
     }
 
     public function R_create()
     {
         helper('form');
 
-        return view('privat/Reducciones/R_create');
+        return view('Admins/extras_matricula/reducciones/r_create');
     }
 
     public function R_post()
@@ -48,7 +50,7 @@ class ReduccionesController extends BaseController
             'nombre' => $this->request->getPost('nombre'),
             'precio' => $this->request->getPost('precio')
         ];
-   
+        
         $file = $this->request->getFile('documento');
 
         if ($file && $file->isValid()) {
@@ -70,8 +72,8 @@ class ReduccionesController extends BaseController
         $model = new ReudccionesModel();
 
         $data['reduccion'] = $model->find($id);
-
-        return view('privat/Reducciones/R_edit', $data);
+        
+        return view('Admins/extras_matricula/reducciones/R_edit', $data);
     }
 
     public function R_edit_post($id)

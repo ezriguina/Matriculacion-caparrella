@@ -15,12 +15,12 @@ class BonificacionesController extends BaseController
         helper('form');
 
         $model = new BonificacionModel();
-
+        
         $bonificaciones = $model
             ->select('bonificaciones.*, curs.Nom_curs')
             ->join('curs', 'curs.id_curs = bonificaciones.id_curso')
             ->paginate(6);
-
+        
         $data['bonificaciones'] = $bonificaciones;
 
         return view('Admins/extras_matricula/Bonificaciones/B_list', $data);

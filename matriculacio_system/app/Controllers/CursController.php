@@ -21,7 +21,7 @@ class CursController extends BaseController
         ->orderBy('curs.created_at', 'DESC');
         
         
-
+        
         $data['cursos'] = $CursoModel->paginate(6);
         $data['pager'] = $CursoModel->pager;
         
