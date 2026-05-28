@@ -215,7 +215,7 @@ return redirect()->to('matricula/datos_curs');
         $data['bonif'] = $bonificacionModel->findAll(); 
         $data ['curso'] = $cursModel->findAll();
         $data ['red'] = $reduccionModel->findAll();
-        
+
         return view('public/matricula/matricula2',$data);
     } 
 
@@ -389,7 +389,13 @@ public function pago_post()
 
     $rutaPdf = WRITEPATH . 'uploads/' .$alumne['Dni_alumne'].'.pdf' ;
 
-   $pdf->Output($rutaPdf, 'F');
+   $pdf->Output($rutaPdf, 'F'); 
+
+
+
+   if($pdf){
+    return redirect()->to('matricula/matricula_exit')->with('succes','se ha hecho la matricula');
+   }
 }
  
 //----------------------------------------------------------------------------
@@ -439,6 +445,13 @@ public function Dashborad_view()
 
     return view('Admins/dashboard', $data);
 }  
+
+public function matricula_Exit(){
+   helper('form'); 
+   $session = session() ; 
+
+   return view('public/matricula/matricula_exit') ; 
+}
 
 public function Matricula_list(){ 
 

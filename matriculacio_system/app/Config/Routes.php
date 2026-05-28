@@ -41,7 +41,8 @@ $routes->post('matricula','MatriculaController::index_post');
     $routes->post('matricula/pago','MatriculaController::pago_post');
      
     $routes->get('matricula/pago/pdf','MatriculaController::generar_pdf');
-
+    $routes->get('matricula/matricula_exit','MatriculaController::matricula_Exit'); 
+    
     
 
 $routes->get('matricula/datos_alumne','MatriculaController::m_alumne_view');

@@ -1,227 +1,272 @@
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>Acceso con código · Matrícula Segura</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap + Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
+    <title>Acceso con código</title>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-body{
-background: radial-gradient(circle at 10% 30%, #f0f4ff, #e0e8ff);
-font-family:'Inter',system-ui;
-min-height:100vh;
-display:flex;
-flex-direction:column;
-}
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-/* NAVBAR PREMIUM */
-.navbar-premium{
-background: rgba(255,255,255,0.85);
-backdrop-filter: blur(16px);
-box-shadow:0 2px 12px rgba(0,0,0,0.05);
-padding:0.7rem 0;
-}
+    <style>
 
-.brand-text{
-font-weight:700;
-background:linear-gradient(135deg,#1e3a8a,#2563eb);
--webkit-background-clip:text;
-color:transparent;
-}
+        body{
+            min-height:100vh;
+            background:#f5f7ff;
+        }
 
-/* CARD GLASS */
-.glass-card{
-border-radius:2rem;
-background:rgba(255,255,255,0.45);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.5);
-box-shadow:0 20px 45px rgba(0,0,0,0.2);
-overflow:hidden;
-}
+        .hero-side{
+            background:linear-gradient(135deg,#5f6ccf,#6f7de0);
+        }
 
-/* PANEL IZQUIERDO */
-.hero-side{
-background:linear-gradient(125deg,#1e2b6e,#2563eb);
-color:white;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:2.5rem;
-}
+        .text-primary-custom{
+            color:#5f6ccf;
+        }
 
-.hero-side img{
-max-width:110px;
-margin-bottom:1.2rem;
-background:rgba(255,255,255,0.1);
-border-radius:60px;
-padding:0.5rem;
-}
+        .btn-primary{
+            background:#5f6ccf;
+            border-color:#5f6ccf;
+        }
 
-.hero-side h4{
-font-weight:700;
-}
+        .btn-primary:hover{
+            background:#5260c2;
+            border-color:#5260c2;
+        }
 
-/* PANEL DERECHO */
-.form-side{
-background:rgba(255,255,255,0.75);
-backdrop-filter:blur(10px);
-padding:2.5rem;
-}
+        .btn-outline-custom{
+            border:1px solid #d8def7;
+            color:#5f6ccf;
+            border-radius:16px;
+            padding:.9rem 1rem;
+            font-weight:600;
+            transition:.2s ease;
+        }
 
-.form-title{
-font-weight:700;
-margin-bottom:1.5rem;
-border-left:5px solid #2563eb;
-padding-left:1rem;
-color:#0f2b4d;
-}
+        .btn-outline-custom:hover{
+            background:#f5f7ff;
+            border-color:#5f6ccf;
+            color:#5f6ccf;
+        }
 
-/* INPUTS */
-.custom-input{
-border-radius:1rem;
-padding:0.8rem 1rem;
-border:1px solid #e2e8f0;
-}
+        .custom-input{
+            border-radius:16px;
+            padding:.9rem 1rem .9rem 3rem;
+            border:1px solid #dfe3f5;
+            transition:.2s ease;
+        }
 
-.custom-input:focus{
-border-color:#3b82f6;
-box-shadow:0 0 0 4px rgba(59,130,246,0.15);
-outline:none;
-}
+        .custom-input:focus{
+            border-color:#5f6ccf;
+            box-shadow:0 0 0 .2rem rgba(95,108,207,.15);
+        }
 
-/* BOTONES */
-.btn-gradient{
-background:linear-gradient(95deg,#1e40af,#3b82f6);
-border:none;
-border-radius:1.5rem;
-padding:0.8rem;
-font-weight:600;
-color:white;
-}
+        .input-group-custom{
+            position:relative;
+        }
 
-.btn-gradient:hover{
-transform:translateY(-2px);
-background:linear-gradient(95deg,#1e3a8a,#2563eb);
-}
+        .input-group-custom i{
+            position:absolute;
+            left:1rem;
+            top:50%;
+            transform:translateY(-50%);
+            color:#7b88d1;
+            z-index:10;
+        }
 
-.btn-outline-custom{
-border-radius:1.5rem;
-font-weight:500;
-}
+        .glass-box{
+            background:#ffffff;
+            border:1px solid #edf0fb;
+        }
 
-/* FOOTER */
-.footer-note{
-font-size:0.75rem;
-text-align:center;
-margin-top:1rem;
-color:#4b5563;
-}
+        .footer-note{
+            color:#98a0c0;
+            font-size:.85rem;
+        }
 
-</style>
+    </style>
+
 </head>
 
 <body>
 
-<nav class="navbar-premium">
-<div class="container">
-<a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="#">
-<img src="<?= base_url('img/logo-removebg-preview.png') ?>" height="40">
-</a>
-</div>
-</nav>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
 
-<div class="container d-flex justify-content-center align-items-center flex-grow-1 py-5">
+        <div class="container">
 
-<div class="glass-card w-100" style="max-width:1000px;">
+            <a class="navbar-brand d-flex align-items-center gap-3 text-decoration-none" href="#">
 
-<div class="row g-0">
+                <img 
+                    src="<?= base_url('img/logo-removebg-preview.png') ?>" 
+                    height="55">
 
-<div class="col-md-5 hero-side">
+            </a>
 
-<img src="<?= base_url('img/logo-removebg-preview.png') ?>">
+        </div>
 
-<h4>Acceso con código</h4>
+    </nav>
 
-<p class="mt-3">
-Introduce el código enviado a tu correo para continuar con el proceso de matrícula de forma segura.
-</p>
+    <div class="container py-5">
 
-</div>
+        <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
 
-<div class="col-md-7 form-side">
+            <div class="row g-0">
 
-<div class="form-title">
-<i class="bi bi-shield-lock"></i> Verificación de acceso
-</div>
+                <div class="col-lg-5 hero-side text-white d-flex flex-column justify-content-center p-5">
 
-<form action="<?= base_url('public/login_code') ?>" method="post">
+                    <img 
+                        src="<?= base_url('img/logo-removebg-preview.png') ?>"
+                        class="img-fluid mx-auto mb-4"
+                        style="max-width:120px;">
 
-<?= csrf_field(); ?>
-<?= validation_list_errors() ?>
+                    <h2 class="fw-bold text-center mb-3">
+                        Acceso con código
+                    </h2>
 
-<div class="mb-4">
+                    <p class="text-center opacity-75 mb-0">
+                        Introduce el código de verificación enviado a tu correo para continuar el proceso de matrícula de forma segura.
+                    </p>
 
-<label class="form-label fw-semibold">
-<i class="bi bi-envelope"></i> Código enviado a <?= $email; ?>
-</label>
+                    <div class="d-flex justify-content-center gap-2 mt-4">
 
-<input
-type="password"
-class="form-control custom-input"
-name="code_pass"
-placeholder="Introduce tu código">
+                        <span class="badge bg-white text-primary rounded-pill px-3 py-2">
+                            Verificado
+                        </span>
 
-</div>
+                        <span class="badge bg-white text-primary rounded-pill px-3 py-2">
+                            Seguro
+                        </span>
 
-<div class="d-grid mb-3">
+                        <span class="badge bg-white text-primary rounded-pill px-3 py-2">
+                            Privado
+                        </span>
 
-<button class="btn btn-gradient btn-lg">
-<i class="bi bi-key-fill me-2"></i> Acceder
-</button>
+                    </div>
 
-</div>
+                </div>
 
-<div class="d-grid mb-3">
+                <div class="col-lg-7 bg-white p-4 p-lg-5">
 
-<a href="<?= base_url('public/recibir_codigo') ?>" class="btn btn-outline-secondary btn-outline-custom">
-<i class="bi bi-arrow-repeat me-2"></i> Solicitar nuevo código
-</a>
+                    <div class="d-flex align-items-center gap-3 mb-4">
 
-</div>
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                            style="width:50px;height:50px;">
 
-</form>
+                            <i class="bi bi-shield-lock"></i>
 
-<div class="text-center mt-3">
-<a href="<?= base_url('privat/Dashboard/Instiut-Caparrella') ?>" class="text-decoration-none text-primary fw-semibold">
-<i class="bi bi-arrow-right-circle"></i> Acceder directamente a la zona privada
-</a>
-</div>
+                        </div>
 
-<div class="footer-note">
-<i class="bi bi-shield-lock-fill"></i>
-© <?= date('Y') ?> Instituto Caparrella · Todos los derechos reservados
-</div>
+                        <div>
 
-</div>
+                            <h4 class="fw-bold mb-0">
+                                Verificación de acceso
+                            </h4>
 
-</div>
+                            <small class="text-muted">
+                                Introduce el código recibido
+                            </small>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
+
+                    <form action="<?= base_url('public/login_code') ?>" method="post">
+
+                        <?= csrf_field(); ?>
+                        <?= validation_list_errors(); ?>
+
+                        <div class="glass-box rounded-4 p-4">
+
+                            <div class="mb-4">
+
+                                <label class="form-label fw-semibold">
+                                    Código enviado a <?= $email; ?>
+                                </label>
+
+                                <div class="input-group-custom">
+
+                                    <i class="bi bi-key-fill"></i>
+
+                                    <input 
+                                        type="password"
+                                        class="form-control custom-input"
+                                        name="code_pass"
+                                        placeholder="Introduce tu código">
+
+                                </div>
+
+                                <div class="form-text">
+                                    Revisa tu correo electrónico para obtener el código.
+                                </div>
+
+                            </div>
+
+                            <div class="d-grid mb-3">
+
+                                <button type="submit"
+                                        class="btn btn-primary btn-lg rounded-4 py-3">
+
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>
+
+                                    Acceder
+
+                                </button>
+
+                            </div>
+
+                            <div class="d-grid">
+
+                                <a href="<?= base_url('public/recibir_codigo') ?>"
+                                   class="btn btn-outline-custom">
+
+                                    <i class="bi bi-arrow-repeat me-2"></i>
+
+                                    Solicitar nuevo código
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                    <div class="text-center mt-4">
+
+                        <a 
+                            href="<?= base_url('privat/Dashboard/Instiut-Caparrella') ?>"
+                            class="text-decoration-none fw-semibold text-primary-custom">
+
+                            <i class="bi bi-lock-fill me-1"></i>
+
+                            Acceder a zona privada
+
+                        </a>
+
+                    </div>
+
+                    <div class="text-center footer-note mt-4">
+
+                        <i class="bi bi-shield-lock-fill me-1"></i>
+
+                        © <?= date('Y') ?> Institut Caparrella
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>
+```

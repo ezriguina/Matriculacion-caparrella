@@ -97,13 +97,6 @@
             <img 
                 src="<?= base_url('img/logo-removebg-preview.png') ?>" 
                 height="55">
-
-            <div class="fw-bold fs-4 lh-1 primary-color">
-
-                Institut <br> Caparrella
-
-            </div>
-
         </a>
 
     </div>
