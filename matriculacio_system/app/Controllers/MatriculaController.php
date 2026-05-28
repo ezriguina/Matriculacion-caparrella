@@ -384,18 +384,15 @@ public function pago_post()
 
     $pdf->writeHTML($html);
     
-    
-    $pdf->Output($alumne['Dni_alumne'].'.pdf', 'D'); 
-
+        
     $rutaPdf = WRITEPATH . 'uploads/' .$alumne['Dni_alumne'].'.pdf' ;
 
-   $pdf->Output($rutaPdf, 'F'); 
-
-
-
-   if($pdf){
+    $pdf->Output($rutaPdf, 'F'); 
+    
+    $pdf->Output($alumne['Dni_alumne'].'.pdf', 'D'); 
+    
     return redirect()->to('matricula/matricula_exit')->with('succes','se ha hecho la matricula');
-   }
+   
 }
  
 //----------------------------------------------------------------------------
