@@ -276,9 +276,16 @@
                                             Cap reducció
                                         </option>
 
-                                        <option value="familia_numerosa">
-                                            Família nombrosa
+                                        <?php foreach($red as $r): ?>
+
+                                        <option value="<?= $r['nombre']; ?>">
+
+                                            <?= $r['nombre']; ?>
+
                                         </option>
+
+                                        <?php endforeach; ?>
+
 
                                         <option value="hermanos">
                                             Descompte per germans

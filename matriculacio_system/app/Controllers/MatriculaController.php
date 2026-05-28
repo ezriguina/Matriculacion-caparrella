@@ -210,10 +210,12 @@ return redirect()->to('matricula/datos_curs');
     public function m_curs_view(){
         $cursModel = new CursModel(); 
         $bonificacionModel=new BonificacionModel(); 
-     
+        $reduccionModel   = new ReudccionesModel();
         helper('form');
         $data['bonif'] = $bonificacionModel->findAll(); 
         $data ['curso'] = $cursModel->findAll();
+        $data ['red'] = $reduccionModel->findAll();
+        
         return view('public/matricula/matricula2',$data);
     } 
 
