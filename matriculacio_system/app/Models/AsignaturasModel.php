@@ -12,7 +12,7 @@ class AsignaturasModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nombre','codigo','tipo','precio','created_at','updated_at','deleted_at'];
+    protected $allowedFields    = ['nombre','tipo','precio','id_curs','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

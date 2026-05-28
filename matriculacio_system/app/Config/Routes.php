@@ -62,6 +62,16 @@ $routes->post('privat/cursos/update/(:num)', 'CursController::update/$1',['filte
 
 $routes->get('privat/cursos/delete/(:num)', 'CursController::delete/$1',['filter' => 'auth']);
 
+
+//crud asignaturas 
+
+$routes->get('privat/cursos/asignaturas','AsignaturasController::asig_list') ;
+$routes->get('privat/cursos/asignaturas/create','AsignaturasController::asig_create') ;
+$routes->post('privat/cursos/asignaturas/create','AsignaturasController::asig_create_post') ;
+$routes->get('privat/cursos/asignaturas/edit/(:segment)','AsignaturasController::asig_edit/$1') ;
+$routes->post('privat/cursos/asignaturas/edit/(:segment)','AsignaturasController::asig_edit_post/$1') ;
+$routes->get('privat/cursos/asignaturas/delete/(:segment)','AsignaturasController::delete/$1') ; 
+
 //Tanda y Dash  
 
 

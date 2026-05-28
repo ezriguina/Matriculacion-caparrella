@@ -175,7 +175,7 @@
 
                             <li>
                                 <a class="dropdown-item"
-                                    href="<?= base_url('privat/asignaturas') ?>">
+                                    href="<?= base_url('privat/cursos/asignaturas') ?>">
 
                                     Asignaturas
 
