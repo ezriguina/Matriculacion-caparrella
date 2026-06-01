@@ -6,14 +6,14 @@ use CodeIgniter\Model;
 
 class OptativasModel extends Model
 {
-    protected $table            = 'optativas';
+    protected $table            = 'optativa';
     protected $primaryKey       = 'id_optativa';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nom_opt','codigo_opt','precio_opt','curso_id','created_at','updated_at','deleted_at'];
-
+    protected $allowedFields    = ['nom_opt','precio_opt','curso_id','created_at','updated_at','deleted_at'];
+    
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 

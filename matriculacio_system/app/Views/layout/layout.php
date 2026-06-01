@@ -113,11 +113,7 @@
                     src="<?= base_url('img/logo-removebg-preview.png') ?>"
                     height="52">
 
-                <div class="fw-bold fs-4 lh-1 brand-color">
-
-                    Institut <br> Caparrella
-
-                </div>
+                
 
             </a>
 
@@ -193,8 +189,8 @@
 
                             <li>
                                 <a class="dropdown-item"
-                                    href="<?= base_url('privat/optativas') ?>">
-
+                                    href="<?= base_url('privat/cursos/asignaturas_op') ?>">
+                                    
                                     Optativas
 
                                 </a>

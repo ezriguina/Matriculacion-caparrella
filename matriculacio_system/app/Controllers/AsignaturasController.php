@@ -162,4 +162,163 @@ class AsignaturasController extends BaseController
 
     }
      
+// las optativas 
+     public function asig_list_op()
+    {
+     helper('form'); 
+     $session = session(); 
+
+     $AsignaturasModel = new AsignaturasModel() ;
+     $CursModel = new CursModel(); 
+     $NivelModel = new NivelModel(); 
+     $OptativasModel = new OptativasModel();
+     
+     $data['Asignaturas'] = $OptativasModel->findAll(); 
+     $data['CursModel'] = $CursModel->findAll() ; 
+     
+     return view('Admins/cursos/optativas/O_list',$data);
+
+    }
+
+    public function asig_create_op()
+    {
+        helper('form'); 
+     $session = session(); 
+     
+     $AsignaturasModel = new AsignaturasModel() ;
+     $CursModel = new CursModel(); 
+     $NivelModel = new NivelModel(); 
+     $OptativasModel = new OptativasModel();
+     
+     $data['Asignaturas'] = $AsignaturasModel->findAll(); 
+     $data['CursModel'] = $CursModel->findAll() ; 
+     $data['Optativas'] = $OptativasModel->findAll(); 
+
+     
+     return view('Admins/cursos/optativas/O_create',$data);
+
+        
+    } 
+
+    public function asig_create_post_op()
+    {
+        helper('form'); 
+     $session = session(); 
+     
+     $AsignaturasModel = new AsignaturasModel() ;
+     $CursModel = new CursModel(); 
+     $NivelModel = new NivelModel(); 
+     $OptativasModel = new OptativasModel(); 
+
+     $Asig = $this->request->getPost('Asig'); 
+     $tipo = $this->request->getPost('tipo'); 
+     $Curso = $this->request->getPost('curs'); 
+     $precio = $this->request->getPost('precio'); 
+
+     $validation = [
+        'Asig'    => 'required',
+        'curs'    => 'required',
+        'precio'    => 'required'
+     ];
+     if(!$this->validate($validation)){
+        return redirect()->back()->withInput()->with('error',$validation); 
+     }
+
+     $curso = $CursModel->where('Nom_curs',$Curso)->first() ;
+     if(!$curso){
+      die('el curso no esta disponible');
+     }
+
+     $data_asig = [
+     'nom_opt'    => $Asig,
+     'precio_opt'   => $precio ,
+     'curso_id'  => $curso['id_curs']
+     ]; 
+     
+     $OptativasModel->insert($data_asig) ;
+
+     $data['Asignaturas'] = $AsignaturasModel->findAll(); 
+     $data['CursModel'] = $CursModel->findAll() ; 
+     $data['Optativas'] = $OptativasModel->findAll(); 
+
+     return redirect()->to('privat/cursos/asignaturas_op')->with('succes','has creado una asignatura');
+
+    }
+    public function asig_edit_op($id)
+    {
+      helper('form'); 
+     $session = session(); 
+     
+     $AsignaturasModel = new AsignaturasModel() ;
+     $CursModel = new CursModel(); 
+     $NivelModel = new NivelModel(); 
+     $OptativasModel = new OptativasModel(); 
+
+     $Asig = $OptativasModel->find($id); 
+     
+     $data['Asignaturas'] = $Asig; 
+     $data['CursModel'] = $CursModel->findAll() ; 
+     
+     return view('Admins/cursos/optativas/O_edit',$data);
+
+        
+    }
+    public function asig_edit_post_op($id)
+    {
+             helper('form'); 
+     $session = session(); 
+     
+     $AsignaturasModel = new AsignaturasModel() ;
+     $CursModel = new CursModel(); 
+     $NivelModel = new NivelModel(); 
+     $OptativasModel = new OptativasModel();
+     $Asig = $this->request->getPost('Asig'); 
+     $tipo = $this->request->getPost('tipo'); 
+     $Curso = $this->request->getPost('curs'); 
+     $precio = $this->request->getPost('precio'); 
+
+     $validation = [
+        'Asig'    => 'required',
+        'curs'    => 'required',
+        'precio'  => 'required'
+     ];
+
+     if(!$this->validate($validation)){
+        return redirect()->back()->withInput()->with('error',$validation); 
+     }
+
+     $curso = $CursModel->where('Nom_curs',$Curso)->first() ;
+     if(!$curso){
+      die('el curso no esta disponible');
+
+     }
+
+     $data_asig = [
+     'nom_opt'    => $Asig,
+     'precio_opt'   => $precio ,
+     'curso_id'  => $curso['id_curs']
+     ]; 
+     
+     $OptativasModel->update($id,$data_asig) ;
+     
+     $data['Asignaturas'] = $AsignaturasModel->findAll(); 
+     $data['CursModel'] = $CursModel->findAll() ; 
+     $data['Optativas'] = $OptativasModel->findAll() ; 
+     
+     return redirect()->to('privat/cursos/asignaturas_op')->with('succes','has creado una asignatura');
+
+    }
+    public function delete_op($id)
+    {
+        $session = session(); 
+
+        $AsignaturasModel = new AsignaturasModel(); 
+        $OptativasModel = new OptativasModel(); 
+
+        $Asig = $OptativasModel->delete($id); 
+        
+        return redirect()->to('privat/cursos/asignaturas_op')->with('succes','has borrado una asignatura');
+
+    }
+     
 }

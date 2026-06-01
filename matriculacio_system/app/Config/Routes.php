@@ -72,6 +72,14 @@ $routes->get('privat/cursos/asignaturas/edit/(:segment)','AsignaturasController:
 $routes->post('privat/cursos/asignaturas/edit/(:segment)','AsignaturasController::asig_edit_post/$1') ;
 $routes->get('privat/cursos/asignaturas/delete/(:segment)','AsignaturasController::delete/$1') ; 
 
+//optativas 
+$routes->get('privat/cursos/asignaturas_op','AsignaturasController::asig_list_op') ;
+$routes->get('privat/cursos/asignaturas/create_op','AsignaturasController::asig_create_op') ;
+$routes->post('privat/cursos/asignaturas/create_op','AsignaturasController::asig_create_post_op') ;
+$routes->get('privat/cursos/asignaturas/edit_op/(:segment)','AsignaturasController::asig_edit_op/$1') ;
+$routes->post('privat/cursos/asignaturas/edit_op/(:segment)','AsignaturasController::asig_edit_post_op/$1') ;
+$routes->get('privat/cursos/asignaturas/delete_op/(:segment)','AsignaturasController::delete_op/$1') ; 
+
 //Tanda y Dash  
 
 

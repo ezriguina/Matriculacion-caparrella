@@ -263,7 +263,7 @@
 
                                     <select 
                                         class="form-select"
-                                        name="reduccion"
+                                        name="redu"
                                         id="reduccionSelect">
 
                                         <option value="">
@@ -279,11 +279,6 @@
                                         </option>
 
                                         <?php endforeach; ?>
-
-
-                                        <option value="hermanos">
-                                            Descompte per germans
-                                        </option>
 
                                     </select>
 

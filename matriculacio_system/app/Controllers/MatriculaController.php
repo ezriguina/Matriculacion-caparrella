@@ -223,15 +223,16 @@ return redirect()->to('matricula/datos_curs');
 public function m_curs_post(){
     $matriculaModel = new MatriculaModel(); 
     $bonifModel = new BonificacionModel(); 
-
+    $reduModel = new ReudccionesModel() ; 
+    
 $session = session();
 helper('form');
 $curso = $this->request->getPost('Nom_curs');
 $bonif = $this->request->getPost('bonif'); 
+$redu  = $this->request->getPost('redu'); 
 
 $validation = [
 'Nom_curs' => 'required',
-'bonif'    => 'required'
 ];
 
 if(!$this->validate($validation)){
@@ -252,10 +253,13 @@ $data = [
 
 $curs = $Cursmodel->where('nom_curs',$curso)->first();
 $bonificacion = $bonifModel->where('nombre',$bonif)->first(); 
+$reduccion = $reduModel->where('nombre',$redu)->first() ; 
 
 $sessionData=[
 'id_curs' => $curs['id_curs'] ,
-//'id_bonif' => $bonificacion['id_bonificacion']
+'id_bonif' => $bonificacion['id_bonificacion'],
+'id_redu'  => $reduccion['id_reduccion'] , 
+
 ]; 
 
 $session ->set($sessionData); 
@@ -282,11 +286,13 @@ public function pago_view()
     if (!$session->has('id_alumne') || !$session->has('id_curs')) {
     return redirect()->to('matricula/datos_curs')->with('error',' te falta datos del alumne o curs ')->withInput();
     }
-    
+    //builder mejor 
+
     $id_Alumne = session()->get('id_alumne');
     $id_Curs = session()->get('id_curs');
     //$id_bonificaion = session()->get('id_bonificacion'); 
-    $id_bonificacion = $session->get('id_bonificacion') ; 
+    $id_bonificacion = $session->get('id_bonif') ; 
+    $id_reduccion = $session->get('id_redu') ; 
     //$id_tutor = $AlumneModel->where('id_tutor',) ; 
     //$id_tutor = $tutorModel->where('',);
     $tandada = $tandaModel->where('estado', '1')->first();
@@ -297,7 +303,8 @@ public function pago_view()
     $data = [
         'alumne' => $alumne,
         'curs' => $curs,
-       // 'bonif'=> $id_bonificaion
+        'bonif'=> $id_bonificacion,
+        'redu' => $id_reduccion
     ];
     
     
@@ -314,7 +321,10 @@ public function pago_post()
     $matriculaModel = new MatriculaModel();
     $tandadaModel = new TandaModel() ; 
     $bonificacion = new BonificacionModel() ;
+    $ReduccionModel = new ReudccionesModel() ;
     
+
+
     $id_alumne = $session->get('id_alumne');
     $id_curs = $session->get('id_curs') ; 
     $id_bonificacion = $session->get('id_bonificacion') ; 
@@ -355,16 +365,29 @@ public function pago_post()
 
     $AlumneModel = new AlumneModel();
     $CursModel = new CursModel();
-    
+    $reduccionModel = new ReudccionesModel() ;
+    $bonificacionModel = new BonificacionModel() ; 
+
     $id_alumne = $session->get('id_alumne');
-    $id_curs = $session->get('id_curs');
-    
+    $id_curs = $session->get('id_curs'); 
+    $id_reduccion = $session->get('id_redu') ; 
+    $id_bonificacion = $session->get('id_bonif') ; 
+
+    //asignaturas 
+    //tutor 
+    //nivel
+    //optativas 
+
     $alumne = $AlumneModel->find($id_alumne);
     $curs = $CursModel->find($id_curs);
-    
+    $reduccion = $reduccionModel->find($id_reduccion);
+    $bonificacion = $bonificacionModel->find($id_bonificacion); 
+
     $data = [
         'alumne' => $alumne,
-        'curs' => $curs
+        'curs' => $curs,
+        'reduccion' => $reduccion,
+        'bonificacion' => $bonificacion,
     ];
      
     $html = view('media/pdf/matricula_pdf', $data);
