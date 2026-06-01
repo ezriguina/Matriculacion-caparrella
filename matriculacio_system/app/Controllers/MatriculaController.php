@@ -380,11 +380,26 @@ public function pago_post()
     $reduccion = $reduccionModel->find($id_reduccion);
     $bonificacion = $bonificacionModel->find($id_bonificacion);
 
+    $total = $curs['precio'];
+
+    if ($bonificacion) {
+        $total -= $bonificacion['precio'];
+    }
+
+    if ($reduccion) {
+        $total -= $reduccion['precio'];
+    }
+
+    if ($total < 0) {
+        $total = 0;
+    }
+
     $data = [
         'alumne' => $alumne,
         'curs' => $curs,
         'reduccion' => $reduccion,
         'bonificacion' => $bonificacion,
+        'total' => $total
     ];
 
     $html = view('media/pdf/matricula_pdf', $data);
@@ -393,22 +408,17 @@ public function pago_post()
 
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
-    $pdf->SetMargins(15, 15, 15);
+    $pdf->SetMargins(10, 10, 10);
     $pdf->AddPage();
+
     $pdf->writeHTML($html, true, false, true, false, '');
 
-    $fileName = $alumne['Dni_alumne'] . '_matricula.pdf';
-    $filePath = WRITEPATH . 'uploads/expedientes_alumnos/' . $fileName;
+    $fileName = 'recibo_matricula_' . $alumne['Dni_alumne'] . '.pdf';
 
-    // 1. GUARDAR EN SERVIDOR
-    $pdf->Output($filePath, 'F');
+    // DESCARGA DIRECTA AL USUARIO
+    $pdf->Output($fileName, 'D');
 
-    // 2. DESCARGA DIRECTA AL CLIENTE
-    return $this->response
-        ->download($filePath, null)
-        ->setFileName($fileName);
 }
-
 //----------------------------------------------------------------------------
 //Dashboard PRIVAT FOR ADMINS 
 

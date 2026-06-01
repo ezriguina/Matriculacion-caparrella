@@ -2,227 +2,136 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <style>
 
 body{
     font-family: DejaVu Sans, sans-serif;
-    font-size: 12px;
-    color:#1f2937;
+    font-size: 11px;
+    color:#222;
+}
+
+.ticket{
+    border:2px solid #2c3e50;
+    padding:18px;
 }
 
 .header{
     text-align:center;
-    border-bottom:2px solid #1d4ed8;
+    border-bottom:2px solid #2c3e50;
     padding-bottom:10px;
-    margin-bottom:20px;
-}
-
-.logo{
-    width:90px;
-    margin-bottom:5px;
+    margin-bottom:15px;
 }
 
 .title{
     font-size:18px;
     font-weight:bold;
-    color:#1d4ed8;
 }
 
 .subtitle{
     font-size:11px;
-    color:#6b7280;
+    color:#666;
 }
 
 .box{
-    border:1px solid #e5e7eb;
-    border-radius:6px;
-    padding:10px;
-    margin-bottom:15px;
+    border:1px solid #ddd;
+    padding:8px;
+    margin-bottom:10px;
 }
 
 .section-title{
-    font-size:13px;
     font-weight:bold;
-    color:#111827;
-    margin-bottom:8px;
-    border-left:4px solid #1d4ed8;
-    padding-left:8px;
+    margin-top:10px;
+    margin-bottom:5px;
+    background:#f2f4f7;
+    padding:5px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-td{
-    padding:6px;
-    border-bottom:1px solid #f3f4f6;
+.row{
+    display:block;
+    margin-bottom:4px;
 }
 
 .label{
     font-weight:bold;
-    width:40%;
-    color:#374151;
 }
 
 .total{
-    margin-top:20px;
-    padding:12px;
-    background:#1d4ed8;
-    color:white;
-    font-size:15px;
+    font-size:16px;
     font-weight:bold;
+    color:#1e8449;
     text-align:right;
-    border-radius:6px;
-}
-
-.footer{
-    margin-top:25px;
-    text-align:center;
-    font-size:10px;
-    color:#6b7280;
-    border-top:1px solid #e5e7eb;
+    margin-top:15px;
+    border-top:1px solid #ddd;
     padding-top:10px;
 }
 
-.badge{
-    display:inline-block;
-    padding:4px 8px;
+.bank{
+    margin-top:15px;
+    border:1px dashed #999;
+    padding:10px;
     font-size:10px;
-    background:#e0f2fe;
-    color:#0369a1;
-    border-radius:4px;
-    margin-top:5px;
+}
+
+.id{
+    text-align:right;
+    font-size:10px;
+    color:#777;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
+<div class="ticket">
 
-    <img class="logo" src="<?= FCPATH . 'img/logo_cp.png' ?>">
+    
 
-    <div class="title">RECIBO OFICIAL DE MATRÍCULA</div>
-
-    <div class="subtitle">
-        Documento generado automáticamente por el sistema académico
+    <div class="header">
+        <div class="title">JUSTIFICANTE OFICIAL DE MATRÍCULA</div>
+        <div class="subtitle">Centro educativo - Documento válido como recibo</div>
     </div>
 
-</div>
+    <div class="section-title">DATOS DEL ALUMNO</div>
+    <div class="box">
+        <?= $alumne['Nom_alumne'] ?> <?= $alumne['Cognom_alumne'] ?><br>
+        DNI: <?= $alumne['Dni_alumne'] ?><br>
+        Email: <?= $alumne['correo_alumne'] ?><br>
+        Tel: <?= $alumne['tlf_alumne'] ?><br>
+        Dirección: <?= $alumne['domicili'] ?>, <?= $alumne['poblacio'] ?>
+    </div>
 
-<div class="box">
+    <div class="section-title">DATOS DEL CURSO</div>
+    <div class="box">
+        <?= $curs['Nom_curs'] ?><br>
+        Código: <?= $curs['codigo_curs'] ?><br>
+        Precio base: <?= $curs['precio'] ?> €
+    </div>
 
-    <div class="section-title">Datos del alumno</div>
+    <div class="section-title">DESGLOSE ECONÓMICO</div>
+    <div class="box">
 
-    <table>
+        <div class="row">Precio base: <?= $curs['precio'] ?> €</div>
 
-        <tr>
-            <td class="label">Nombre completo</td>
-            <td><?= $alumne['Cognom_alumne'] ?> <?= $alumne['Nom_alumne'] ?></td>
-        </tr>
+        <?php if($bonificacion): ?>
+        <div class="row">Bonificación: -<?= $bonificacion['precio'] ?> €</div>
+        <?php endif; ?>
 
-        <tr>
-            <td class="label">DNI</td>
-            <td><?= $alumne['Dni_alumne'] ?></td>
-        </tr>
+        <?php if($reduccion): ?>
+        <div class="row">Reducción: -<?= $reduccion['precio'] ?> €</div>
+        <?php endif; ?>
 
-        <tr>
-            <td class="label">Email</td>
-            <td><?= $alumne['correo_alumne'] ?></td>
-        </tr>
+        <div class="total">
+            TOTAL PAGADO: <?= number_format($total,2) ?> €
+        </div>
 
-        <tr>
-            <td class="label">Teléfono</td>
-            <td><?= $alumne['tlf_alumne'] ?></td>
-        </tr>
+    </div>
 
-    </table>
-
-</div>
-
-<div class="box">
-
-    <div class="section-title">Datos del curso</div>
-
-    <table>
-
-        <tr>
-            <td class="label">Curso</td>
-            <td><?= $curs['Nom_curs'] ?></td>
-        </tr>
-
-        <tr>
-            <td class="label">Código</td>
-            <td><?= $curs['codigo_curs'] ?></td>
-        </tr>
-
-        <tr>
-            <td class="label">Fecha emisión</td>
-            <td><?= date('d/m/Y') ?></td>
-        </tr>
-
-    </table>
-
-</div>
-
-<div class="box">
-
-    <div class="section-title">Descuentos aplicados</div>
-
-    <table>
-
-        <tr>
-            <td class="label">Bonificación</td>
-            <td>
-                <?= !empty($bonificacion)
-                    ? $bonificacion['nombre'].' (-'.$bonificacion['precio'].' €)'
-                    : 'Sin bonificación' ?>
-            </td>
-        </tr>
-
-        <tr>
-            <td class="label">Reducción</td>
-            <td>
-                <?= !empty($reduccion)
-                    ? $reduccion['nombre'].' (-'.$reduccion['precio'].' €)'
-                    : 'Sin reducción' ?>
-            </td>
-        </tr>
-
-    </table>
-
-</div>
-
-<?php
-$total = $curs['precio'];
-
-if(!empty($bonificacion)){
-    $total -= $bonificacion['precio'];
-}
-
-if(!empty($reduccion)){
-    $total -= $reduccion['precio'];
-}
-
-if($total < 0){
-    $total = 0;
-}
-?>
-
-<div class="total">
-
-TOTAL PAGADO: <?= number_format($total,2) ?> €
-
-</div>
-
-<div class="footer">
-
-Este recibo confirma la matrícula oficial del alumno en el sistema académico.<br>
-Documento válido sin firma física.
+    <div class="bank">
+        ENTIDAD: 0415876<br>
+        CONCEPTO: MATRÍCULA ALUMNOS<br>
+        FECHA: <?= date('d/m/y') ?>
+    </div>
 
 </div>
 
