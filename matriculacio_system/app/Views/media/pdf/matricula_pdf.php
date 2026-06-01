@@ -2,119 +2,229 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <style>
-body {
-    font-family: DejaVu Sans, Arial, sans-serif;
-    margin: 30px;
-    color: #333;
+
+body{
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 12px;
+    color:#1f2937;
 }
 
-
-.header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
+.header{
+    text-align:center;
+    border-bottom:2px solid #1d4ed8;
+    padding-bottom:10px;
+    margin-bottom:20px;
 }
 
-.logo {
-    width: 120px;
-    height: auto;
+.logo{
+    width:90px;
+    margin-bottom:5px;
 }
 
-.title {
-    font-size: 26px;
-    font-weight: bold;
-    margin-left: 20px;
-    color: #0056b3; 
+.title{
+    font-size:18px;
+    font-weight:bold;
+    color:#1d4ed8;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+.subtitle{
+    font-size:11px;
+    color:#6b7280;
 }
 
-td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+.box{
+    border:1px solid #e5e7eb;
+    border-radius:6px;
+    padding:10px;
+    margin-bottom:15px;
 }
 
-.label {
-    background-color: #f0f4f8; 
-    font-weight: bold;
-    width: 40%;
+.section-title{
+    font-size:13px;
+    font-weight:bold;
+    color:#111827;
+    margin-bottom:8px;
+    border-left:4px solid #1d4ed8;
+    padding-left:8px;
 }
 
-
-p {
-    font-size: 15px;
-    line-height: 1.5;
+table{
+    width:100%;
+    border-collapse:collapse;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 18px;
-    background-color: #0056b3; 
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    font-weight: bold;
+td{
+    padding:6px;
+    border-bottom:1px solid #f3f4f6;
 }
 
-.btn:hover {
-    background-color: #003d80;
+.label{
+    font-weight:bold;
+    width:40%;
+    color:#374151;
 }
+
+.total{
+    margin-top:20px;
+    padding:12px;
+    background:#1d4ed8;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    text-align:right;
+    border-radius:6px;
+}
+
+.footer{
+    margin-top:25px;
+    text-align:center;
+    font-size:10px;
+    color:#6b7280;
+    border-top:1px solid #e5e7eb;
+    padding-top:10px;
+}
+
+.badge{
+    display:inline-block;
+    padding:4px 8px;
+    font-size:10px;
+    background:#e0f2fe;
+    color:#0369a1;
+    border-radius:4px;
+    margin-top:5px;
+}
+
 </style>
+
 </head>
+
 <body>
 
 <div class="header">
-    <img src="<?= base_url('img/logo_cp') ?>" alt="Logo" class="logo">
-    <div class="title">Confirmación de Matrícula</div>
+
+    <img class="logo" src="<?= FCPATH . 'img/logo_cp.png' ?>">
+
+    <div class="title">RECIBO OFICIAL DE MATRÍCULA</div>
+
+    <div class="subtitle">
+        Documento generado automáticamente por el sistema académico
+    </div>
+
 </div>
 
-<p><strong>Fecha:</strong> <?= date('d/m/Y') ?></p>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Matrícula</title>
-</head>
-<body>
+<div class="box">
 
-<h1>Datos del Alumno</h1>
+    <div class="section-title">Datos del alumno</div>
 
-<table border="1" cellpadding="5">
-    <tr><td>Nombre</td><td><?= $alumne['Nom_alumne'] ?></td></tr>
-    <tr><td>DNI</td><td><?= $alumne['Dni_alumne'] ?></td></tr>
-    <tr><td>Email</td><td><?= $alumne['correo_alumne'] ?></td></tr>
-    <tr><td>Teléfono</td><td><?= $alumne['tlf_alumne'] ?></td></tr>
-    <tr><td>Dirección</td><td><?= $alumne['domicili'] ?></td></tr>
-    <tr><td>Población</td><td><?= $alumne['poblacio'] ?></td></tr>
-    <tr><td>Municipio</td><td><?= $alumne['municipi'] ?></td></tr>
-    <tr><td>Código Postal</td><td><?= $alumne['codi_postal'] ?></td></tr>
-    <tr><td>Fecha Nacimiento</td><td><?= $alumne['data_naixement'] ?></td></tr>
-</table>
+    <table>
 
-<br><br>
+        <tr>
+            <td class="label">Nombre completo</td>
+            <td><?= $alumne['Cognom_alumne'] ?> <?= $alumne['Nom_alumne'] ?></td>
+        </tr>
 
-<h1>Datos del Curso</h1>
+        <tr>
+            <td class="label">DNI</td>
+            <td><?= $alumne['Dni_alumne'] ?></td>
+        </tr>
 
-<table border="1" cellpadding="5">
-    <tr><td>Nombre curso</td><td><?= $curs['Nom_curs'] ?></td></tr>
-    <tr><td>Código</td><td><?= $curs['codigo_curs'] ?></td></tr>
-    <tr><td>Precio</td><td><?= $curs['precio'] ?> €</td></tr>
-</table>
+        <tr>
+            <td class="label">Email</td>
+            <td><?= $alumne['correo_alumne'] ?></td>
+        </tr>
 
-</body>
-</html>
-<p>Este documento confirma que el alumno ha realizado el proceso de matrícula.</p>
+        <tr>
+            <td class="label">Teléfono</td>
+            <td><?= $alumne['tlf_alumne'] ?></td>
+        </tr>
 
-<a class="btn" href="<?= base_url('matricula/pago/pdf')?>" target="_blank">
-    Descargar justificante de matrícula
-</a>
+    </table>
+
+</div>
+
+<div class="box">
+
+    <div class="section-title">Datos del curso</div>
+
+    <table>
+
+        <tr>
+            <td class="label">Curso</td>
+            <td><?= $curs['Nom_curs'] ?></td>
+        </tr>
+
+        <tr>
+            <td class="label">Código</td>
+            <td><?= $curs['codigo_curs'] ?></td>
+        </tr>
+
+        <tr>
+            <td class="label">Fecha emisión</td>
+            <td><?= date('d/m/Y') ?></td>
+        </tr>
+
+    </table>
+
+</div>
+
+<div class="box">
+
+    <div class="section-title">Descuentos aplicados</div>
+
+    <table>
+
+        <tr>
+            <td class="label">Bonificación</td>
+            <td>
+                <?= !empty($bonificacion)
+                    ? $bonificacion['nombre'].' (-'.$bonificacion['precio'].' €)'
+                    : 'Sin bonificación' ?>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="label">Reducción</td>
+            <td>
+                <?= !empty($reduccion)
+                    ? $reduccion['nombre'].' (-'.$reduccion['precio'].' €)'
+                    : 'Sin reducción' ?>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+<?php
+$total = $curs['precio'];
+
+if(!empty($bonificacion)){
+    $total -= $bonificacion['precio'];
+}
+
+if(!empty($reduccion)){
+    $total -= $reduccion['precio'];
+}
+
+if($total < 0){
+    $total = 0;
+}
+?>
+
+<div class="total">
+
+TOTAL PAGADO: <?= number_format($total,2) ?> €
+
+</div>
+
+<div class="footer">
+
+Este recibo confirma la matrícula oficial del alumno en el sistema académico.<br>
+Documento válido sin firma física.
+
+</div>
 
 </body>
 </html>

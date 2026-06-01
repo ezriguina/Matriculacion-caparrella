@@ -2,383 +2,245 @@
 <html lang="ca">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirmació matrícula</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <title>Pagament matrícula</title>
+<style>
+body{
+    background:#eef2ff;
+}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+.app-card{
+    border:0;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
 
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+.section-title{
+    font-weight:700;
+    color:#4f46e5;
+}
 
-    <style>
+.step-bar{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
 
-        body{
-            background:#f5f7ff;
-        }
+.step{
+    flex:1;
+    text-align:center;
+}
 
-        .primary-color{
-            color:#5f6ccf;
-        }
+.step-circle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+    background:#dbe2ff;
+    color:#4f46e5;
+}
 
-        .step-circle{
-            width:42px;
-            height:42px;
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:600;
-            background:#dbe2ff;
-            color:#5f6ccf;
-        }
+.step.active .step-circle{
+    background:#4f46e5;
+    color:#fff;
+}
 
-        .step.active .step-circle{
-            background:#5f6ccf;
-            color:white;
-        }
+.step.completed .step-circle{
+    background:#22c55e;
+    color:#fff;
+}
 
-        .step.completed .step-circle{
-            background:#39c27f;
-            color:white;
-        }
+.card-box{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+}
 
-        .form-control,
-        .form-select{
-            border-radius:14px;
-            padding:0.8rem 1rem;
-        }
+.summary-line{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #f1f1f1;
+}
 
-        .btn-primary{
-            background:#5f6ccf;
-            border-color:#5f6ccf;
-        }
+.summary-line:last-child{
+    border-bottom:0;
+}
 
-        .btn-primary:hover{
-            background:#5260c2;
-            border-color:#5260c2;
-        }
-
-        .section-title{
-            color:#5f6ccf;
-            font-weight:700;
-        }
-
-        .card-custom{
-            border:none;
-            border-radius:24px;
-            background:#f8f9ff;
-        }
-
-        .upload-box{
-            border:2px dashed #d6dcff;
-            transition:.2s ease;
-        }
-
-        .upload-box:hover{
-            border-color:#5f6ccf;
-            background:#ffffff;
-        }
-
-    </style>
+.total-box{
+    background:#4f46e5;
+    color:#fff;
+    border-radius:14px;
+    padding:16px;
+}
+</style>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
-
-    <div class="container">
-
-        <a class="navbar-brand d-flex align-items-center gap-3 text-decoration-none" href="#">
-
-            <img 
-                src="<?= base_url('img/logo-removebg-preview.png') ?>" 
-                height="55">
-        </a>
-
-    </div>
-
+<nav class="navbar bg-white shadow-sm">
+<div class="container">
+<img src="<?= base_url('img/logo-removebg-preview.png') ?>" height="50">
+</div>
 </nav>
 
 <div class="container py-5">
 
-    <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
-
-        <div class="card-body p-4 p-lg-5">
-
-            <div class="d-flex justify-content-between align-items-center mb-5 text-center">
-
-                <div class="step completed flex-fill">
-
-                    <div class="step-circle mx-auto mb-2">
-
-                        <i class="bi bi-check-lg"></i>
-
-                    </div>
-
-                    <small class="fw-semibold">
-                        Alumne
-                    </small>
-
-                </div>
-
-                <div class="step completed flex-fill">
-
-                    <div class="step-circle mx-auto mb-2">
-
-                        <i class="bi bi-check-lg"></i>
-
-                    </div>
-
-                    <small class="fw-semibold">
-                        Curs
-                    </small>
-
-                </div>
-
-                <div class="step active flex-fill">
-
-                    <div class="step-circle mx-auto mb-2">
-                        3
-                    </div>
-
-                    <small class="fw-semibold">
-                        Pagament
-                    </small>
-
-                </div>
-
-            </div>
-
-            <form 
-                action="<?= base_url('matricula/pago') ?>" 
-                method="post"
-                enctype="multipart/form-data">
-
-                <?= csrf_field() ?>
-
-                <?= validation_list_errors() ?>
-                
-                <div class="card card-custom mb-4">
-
-                    <div class="card-body p-4">
-
-                        <h4 class="section-title mb-4">
-
-                            <i class="bi bi-receipt me-2"></i>
-
-                            Resum de matrícula
-
-                        </h4>
-
-                        <ul class="list-group">
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Alumne</span>
-
-                                <strong>
-                                    <?= esc($alumne['Nom_alumne']) ?>
-                                </strong>
-
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Email</span>
-
-                                <strong>
-                                    <?= esc($alumne['correo_alumne']) ?>
-                                </strong>
-
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Curs</span>
-
-                                <strong>
-                                    <?= esc($curs['Nom_curs']) ?>
-                                </strong>
-
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Codi curs</span>
-
-                                <strong>
-                                    <?= esc($curs['codigo_curs']) ?>
-                                </strong>
-
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Total a pagar</span>
-
-                                <strong class="text-success fs-5">
-
-                                    <?= esc($curs['precio']) ?> €
-
-                                </strong>
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-                <div class="card card-custom mb-4">
-
-                    <div class="card-body p-4">
-
-                        <h4 class="section-title mb-4">
-
-                            <i class="bi bi-bank me-2"></i>
-
-                            Dades bancàries
-
-                        </h4>
-
-                        <ul class="list-group mb-4">
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Codi entitat</span>
-
-                                <strong>0415876</strong>
-
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Concepte</span>
-
-                                <strong>INGRESSOS ALUMNES</strong>
-
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Alumne</span>
-
-                                <strong>
-                                    <?= esc($alumne['Nom_alumne']) ?>
-                                </strong>
-
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between">
-
-                                <span>Import</span>
-
-                                <strong class="text-success">
-
-                                    <?= esc($curs['precio']) ?> €
-
-                                </strong>
-
-                            </li>
-
-                        </ul>
-
-                        <div class="alert alert-primary border-0 rounded-4 mb-0">
-
-                            <ol class="mb-0">
-
-                                <li>Accedeix a la banca online.</li>
-
-                                <li>Realitza la transferència.</li>
-
-                                <li>Introdueix el codi 0415876.</li>
-
-                                <li>Indica el nom de l'alumne i el curs.</li>
-
-                                <li>Guarda el justificant.</li>
-
-                                <li>Puja el comprovant abans de confirmar.</li>
-
-                            </ol>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="card card-custom mb-4">
-
-                    <div class="card-body p-4">
-
-                        <h4 class="section-title mb-4">
-
-                            <i class="bi bi-upload me-2"></i>
-
-                            Justificant de pagament
-
-                        </h4>
-
-                        <div class="upload-box rounded-4 p-4 bg-white">
-
-                            <label class="form-label fw-semibold mb-3">
-
-                                Pujar comprovant
-
-                            </label>
-
-                            <input 
-                                type="file"
-                                class="form-control"
-                                name="comprov_pago"
-                                accept=".pdf,.jpg,.jpeg,.png">
-
-                            <small class="text-muted d-block mt-2">
-
-                                Formats admesos: PDF, JPG, JPEG i PNG
-
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="d-flex justify-content-center gap-3 mt-5">
-
-                    <a 
-                        href="<?= base_url('matricula/datos_curs') ?>"
-                        class="btn btn-outline-primary px-4 rounded-4">
-
-                        Tornar
-
-                    </a>
-
-                    <button 
-                        type="submit"
-                        class="btn btn-primary btn-lg px-5 rounded-4">
-
-                        Confirmar matrícula
-
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
+<div class="app-card card p-4 p-lg-5">
+
+<div class="step-bar mb-4">
+
+<div class="step completed">
+<div class="step-circle"><i class="bi bi-check-lg"></i></div>
+<small>Alumne</small>
+</div>
+
+<div class="step completed">
+<div class="step-circle"><i class="bi bi-check-lg"></i></div>
+<small>Curs</small>
+</div>
+
+<div class="step active">
+<div class="step-circle">3</div>
+<small>Pagament</small>
+</div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<form action="<?= base_url('matricula/pago') ?>" method="post" enctype="multipart/form-data">
+<?= csrf_field() ?>
+
+<div class="card-box p-4 mb-4">
+
+<h5 class="section-title mb-3"><i class="bi bi-person-vcard me-2"></i> Alumne</h5>
+
+<div class="summary-line">
+<span>Nom complet</span>
+<strong><?= esc($alumne['Cognom_alumne']) ?>, <?= esc($alumne['Nom_alumne']) ?></strong>
+</div>
+
+<div class="summary-line">
+<span>DNI</span>
+<strong><?= esc($alumne['Dni_alumne']) ?></strong>
+</div>
+
+<div class="summary-line">
+<span>Email</span>
+<strong><?= esc($alumne['correo_alumne']) ?></strong>
+</div>
+
+<div class="summary-line">
+<span>Telèfon</span>
+<strong><?= esc($alumne['tlf_alumne']) ?></strong>
+</div>
+
+</div>
+
+<div class="card-box p-4 mb-4">
+
+<h5 class="section-title mb-3"><i class="bi bi-mortarboard me-2"></i> Curs</h5>
+
+<div class="summary-line">
+<span>Nom</span>
+<strong><?= esc($curs['Nom_curs']) ?></strong>
+</div>
+
+<div class="summary-line">
+<span>Codi</span>
+<strong><?= esc($curs['codigo_curs']) ?></strong>
+</div>
+
+<div class="summary-line">
+<span>Preu base</span>
+<strong><?= esc($curs['precio']) ?> €</strong>
+</div>
+
+</div>
+
+<div class="row mb-4">
+
+<?php if(!empty($bonif)): ?>
+<div class="col-md-6">
+<div class="card border-success h-100">
+<div class="card-body">
+<h6 class="text-success"><i class="bi bi-gift-fill me-1"></i> Bonificació</h6>
+<p class="mb-1"><strong><?= esc($bonif['nombre']) ?></strong></p>
+<p class="mb-0">-<?= esc($bonif['precio']) ?> €</p>
+</div>
+</div>
+</div>
+<?php endif; ?>
+
+<?php if(!empty($redu)): ?>
+<div class="col-md-6">
+<div class="card border-info h-100">
+<div class="card-body">
+<h6 class="text-info"><i class="bi bi-percent me-1"></i> Reducció</h6>
+<p class="mb-1"><strong><?= esc($redu['nombre']) ?></strong></p>
+<p class="mb-0">-<?= esc($redu['precio']) ?> €</p>
+</div>
+</div>
+</div>
+<?php endif; ?>
+
+</div>
+
+<?php
+$total = $curs['precio'];
+if(!empty($bonif)) $total -= $bonif['precio'];
+if(!empty($redu)) $total -= $redu['precio'];
+if($total < 0) $total = 0;
+?>
+
+<div class="total-box mb-4 d-flex justify-content-between align-items-center">
+<h5 class="mb-0">Total a pagar</h5>
+<h3 class="mb-0"><?= number_format($total,2) ?> €</h3>
+</div>
+
+<div class="card-box p-4 mb-4">
+
+<h5 class="section-title mb-3"><i class="bi bi-bank me-2"></i> Transferència</h5>
+
+<ul class="mb-0">
+<li>Codi entitat: <strong>0415876</strong></li>
+<li>Concepte: <strong>Matricula</strong></li>
+<li>Alumne: <strong><?= esc($alumne['Nom_alumne']) ?></strong></li>
+<li>Import: <strong><?= number_format($total,2) ?> €</strong></li>
+</ul>
+
+</div>
+
+<div class="card-box p-4 mb-4">
+
+<h5 class="section-title mb-3"><i class="bi bi-upload me-2"></i> Justificant</h5>
+
+<input type="file" class="form-control" name="comprov_pago" accept=".pdf,.jpg,.png">
+
+</div>
+
+<div class="d-flex justify-content-between">
+
+<a href="<?= base_url('matricula/datos_curs') ?>" class="btn btn-outline-secondary px-4">Tornar</a>
+
+<button class="btn btn-primary px-5">Confirmar matrícula</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
 
 </body>
 </html>

@@ -299,12 +299,14 @@ public function pago_view()
     
     $alumne=$AlumneModel->find($id_Alumne);
     $curs=$Cursmodel ->find($id_Curs);
+    $bonificacion = $BonifModel->find($id_bonificacion); 
+    $reduccion = $reduccModel->find($id_reduccion) ; 
     
     $data = [
         'alumne' => $alumne,
         'curs' => $curs,
-        'bonif'=> $id_bonificacion,
-        'redu' => $id_reduccion
+        'bonif'=> $bonificacion,
+        'redu' => $reduccion
     ];
     
     
@@ -359,29 +361,24 @@ public function pago_post()
     return redirect()->to('matricula/pago/pdf')->with('success','Matricula registrada correctamente. Entregue el justificante en el instituto.');
 }
   
-  public function generar_pdf()
+ public function generar_pdf()
 {
     $session = session();
 
     $AlumneModel = new AlumneModel();
     $CursModel = new CursModel();
-    $reduccionModel = new ReudccionesModel() ;
-    $bonificacionModel = new BonificacionModel() ; 
+    $reduccionModel = new ReudccionesModel();
+    $bonificacionModel = new BonificacionModel();
 
     $id_alumne = $session->get('id_alumne');
-    $id_curs = $session->get('id_curs'); 
-    $id_reduccion = $session->get('id_redu') ; 
-    $id_bonificacion = $session->get('id_bonif') ; 
-
-    //asignaturas 
-    //tutor 
-    //nivel
-    //optativas 
+    $id_curs = $session->get('id_curs');
+    $id_reduccion = $session->get('id_redu');
+    $id_bonificacion = $session->get('id_bonif');
 
     $alumne = $AlumneModel->find($id_alumne);
     $curs = $CursModel->find($id_curs);
     $reduccion = $reduccionModel->find($id_reduccion);
-    $bonificacion = $bonificacionModel->find($id_bonificacion); 
+    $bonificacion = $bonificacionModel->find($id_bonificacion);
 
     $data = [
         'alumne' => $alumne,
@@ -389,35 +386,29 @@ public function pago_post()
         'reduccion' => $reduccion,
         'bonificacion' => $bonificacion,
     ];
-     
+
     $html = view('media/pdf/matricula_pdf', $data);
-    
+
     $pdf = new \TCPDF();
-    
-    $pdf->SetCreator($alumne['Nom_alumne']);
-    $pdf->SetAuthor('Caparrella matriculacion ');
-    $pdf->SetTitle('Matricula'.$alumne['Dni_alumne']);
-    $pdf->SetMargins(15, 15, 15);
-    $pdf->SetAutoPageBreak(TRUE, 15);
 
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
-    
+    $pdf->SetMargins(15, 15, 15);
     $pdf->AddPage();
+    $pdf->writeHTML($html, true, false, true, false, '');
 
-    $pdf->writeHTML($html);
-    
-        
-    $rutaPdf = WRITEPATH . 'uploads/' .$alumne['Dni_alumne'].'.pdf' ;
+    $fileName = $alumne['Dni_alumne'] . '_matricula.pdf';
+    $filePath = WRITEPATH . 'uploads/expedientes_alumnos/' . $fileName;
 
-    $pdf->Output($rutaPdf, 'F'); 
-    
-    $pdf->Output($alumne['Dni_alumne'].'.pdf', 'D'); 
-    
-    return redirect()->to('matricula/matricula_exit')->with('succes','se ha hecho la matricula');
-   
+    // 1. GUARDAR EN SERVIDOR
+    $pdf->Output($filePath, 'F');
+
+    // 2. DESCARGA DIRECTA AL CLIENTE
+    return $this->response
+        ->download($filePath, null)
+        ->setFileName($fileName);
 }
- 
+
 //----------------------------------------------------------------------------
 //Dashboard PRIVAT FOR ADMINS 
 
