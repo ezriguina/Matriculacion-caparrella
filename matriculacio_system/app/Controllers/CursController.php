@@ -15,7 +15,7 @@ class CursController extends BaseController
         $CursoModel = new CursModel();
 
           
- $builder = $CursoModel
+        $builder = $CursoModel
         ->select('Curs.*,niveles.nombre')
         ->join('niveles', 'niveles.id_nivel = curs.nivel_id')
         ->orderBy('curs.created_at', 'DESC');

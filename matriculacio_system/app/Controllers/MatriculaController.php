@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AlumneModel;
+use App\Models\AsignaturasModel;
 use App\Models\CursModel;
 use App\Models\MatriculaModel;
 use App\Models\MensajeModel;
@@ -282,6 +283,7 @@ public function pago_view()
     $tutorModel = new TutorModel();
     $BonifModel = new BonificacionModel(); 
     $reduccModel = new ReudccionesModel(); 
+    $AsignaturaModel = new AsignaturasModel() ;
 
     if (!$session->has('id_alumne') || !$session->has('id_curs')) {
     return redirect()->to('matricula/datos_curs')->with('error',' te falta datos del alumne o curs ')->withInput();
@@ -296,15 +298,29 @@ public function pago_view()
     //$id_tutor = $AlumneModel->where('id_tutor',) ; 
     //$id_tutor = $tutorModel->where('',);
     $tandada = $tandaModel->where('estado', '1')->first();
+    $builder = $AlumneModel
+    ->select('alumne.*,tutor_legal.nombre,tutor_legal.apellidos,tutor_legal.dni,tutor_legal.telefono,tutor_legal.email')
+    ->join('tutor_legal','tutor_legal.id_tutor = alumne.id_tutor')->find($id_Alumne); 
+    //$alumne=$AlumneModel->find($id_Alumne);
+    $alumne = $builder ; 
     
-    $alumne=$AlumneModel->find($id_Alumne);
-    $curs=$Cursmodel ->find($id_Curs);
+    $builder_curs = $Cursmodel
+    ->select('curs.*,asignaturas.nombre,asignaturas.tipo')
+    ->join('asignaturas','curs.id_curs = asignaturas.id_curs')
+    ->find($id_Curs);
+
+    $asignaturas = $AsignaturaModel->where('id_curs',$id_Curs) ; 
+
+;   
+    
+    $curs=$builder_curs;
     $bonificacion = $BonifModel->find($id_bonificacion); 
     $reduccion = $reduccModel->find($id_reduccion) ; 
     
     $data = [
         'alumne' => $alumne,
         'curs' => $curs,
+        'asignaturas' => $asignaturas->findAll(),
         'bonif'=> $bonificacion,
         'redu' => $reduccion
     ];
@@ -337,24 +353,25 @@ public function pago_post()
         return redirect()->back()->with('error', 'No hay tanda activa.');
     }
     
-    $comp = $this->request->getFile('comprov_pago');
-
-   /* $validation = [
-    'comprov_pago'  => 'required',
+    $comp = $this->request->getFile('comprov');
+    
+    $validation = [
+    'comprov'  => 'uploaded[comprov]',
     ];
     
     if(!$this->validate($validation)){
         return redirect()->to('matricula/pago')->withInput()->with('error',$validation);
     }
-    */
+    
 
     $data = [
         'id_alumne'        => $id_alumne,
         'id_curs'          => $id_curs,
         'id_tandada'       => $tandada['id_tandada'],
         'estado'           => 'pendiente',
+        'comprov'          => $comp,
         'pagado'           => 0
-    ];
+    ]; 
     
     $matriculaModel->save($data);
     
@@ -369,25 +386,42 @@ public function pago_post()
     $CursModel = new CursModel();
     $reduccionModel = new ReudccionesModel();
     $bonificacionModel = new BonificacionModel();
+    $AsignaturaModel = new AsignaturasModel() ; 
 
     $id_alumne = $session->get('id_alumne');
     $id_curs = $session->get('id_curs');
     $id_reduccion = $session->get('id_redu');
     $id_bonificacion = $session->get('id_bonif');
+     
+    $builder = $AlumneModel
+    ->select('alumne.*,tutor_legal.nombre,tutor_legal.apellidos,tutor_legal.dni,tutor_legal.telefono,tutor_legal.email')
+    ->join('tutor_legal','tutor_legal.id_tutor = alumne.id_tutor')->find($id_alumne); 
+    //$alumne=$AlumneModel->find($id_Alumne);
+    //$alumne = $builder ; 
+    
+    $builder_curs = $CursModel
+    ->select('curs.*,asignaturas.nombre,asignaturas.tipo')
+    ->join('asignaturas','curs.id_curs = asignaturas.id_curs')
+    ->find($id_curs);
 
-    $alumne = $AlumneModel->find($id_alumne);
-    $curs = $CursModel->find($id_curs);
+
+;   
+    
+    $curs=$builder_curs;
+    $alumne = $builder;
+    $curs = $CursModel->find($id_curs); 
+    $asignaturas = $AsignaturaModel->where('id_curs',$id_curs) ; 
     $reduccion = $reduccionModel->find($id_reduccion);
     $bonificacion = $bonificacionModel->find($id_bonificacion);
 
     $total = $curs['precio'];
-
+    
     if ($bonificacion) {
-        $total -= $bonificacion['precio'];
+        $total =$total+$bonificacion['precio'];
     }
 
     if ($reduccion) {
-        $total -= $reduccion['precio'];
+        $total =$total - $reduccion['precio'];
     }
 
     if ($total < 0) {
@@ -397,10 +431,11 @@ public function pago_post()
     $data = [
         'alumne' => $alumne,
         'curs' => $curs,
+        'asignaturas' => $asignaturas->findAll(),
         'reduccion' => $reduccion,
         'bonificacion' => $bonificacion,
         'total' => $total
-    ];
+    ]; 
 
     $html = view('media/pdf/matricula_pdf', $data);
 
